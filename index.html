@@ -300,6 +300,35 @@
   a:focus-visible, button:focus-visible{
     outline:2px solid var(--gold);
     outline-offset:3px;
+}
+
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  .divider .line{
+    transform:scaleX(0);
+    transition:transform 1s ease;
+  }
+  .divider.is-visible .line:first-child{ transform-origin:right; transform:scaleX(1); }
+  .divider.is-visible .line:last-child{ transform-origin:left; transform:scaleX(1); }
+
+  .detail-item{
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .detail-item:hover{
+    transform:translateY(-4px);
+    box-shadow:0 14px 30px -18px rgba(58,74,60,0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .divider .line{ transition:none !important; opacity:1 !important; transform:none !important; }
   }
 </style>
 </head>
