@@ -49,7 +49,7 @@
     position:fixed;
     pointer-events:none;
     z-index:0;
-    opacity:0.25;
+    opacity:0.20;
     color:var(--forest);
     animation:drift 22s ease-in-out infinite;
   }
@@ -179,7 +179,7 @@
     margin:0 auto 2.4rem;
     line-height:1.7;
   }
-  .video-wrap{
+    .video-wrap{
     position:relative;
     border-radius:4px;
     overflow:hidden;
@@ -188,6 +188,15 @@
     background:var(--forest-deep);
     max-width:420px;
     margin:0 auto;
+    transition:transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  .video-wrap:hover{
+    transform:translateY(-6px);
+    box-shadow:0 40px 70px -20px rgba(40,53,42,0.45);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .video-wrap{ transition:none; }
   }
   .video-wrap iframe, .video-wrap video{
     width:100%;
