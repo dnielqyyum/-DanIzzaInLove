@@ -18,8 +18,9 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    background:var(--ivory);
+   body{
+    background:linear-gradient(180deg, var(--ivory) 0%, var(--ivory) 60%, var(--ivory-deep) 85%, var(--forest-deep) 100%);
+    background-attachment:fixed;
     color:var(--ink);
     font-family:'Jost', sans-serif;
     font-weight:300;
@@ -44,7 +45,28 @@
     z-index:0;
     opacity:0.06;
   }
+  .floating-leaf{
+    position:fixed;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.08;
+    color:var(--forest);
+    animation:drift 22s ease-in-out infinite;
+  }
+  .floating-leaf.l2{ animation-duration:28s; animation-delay:-6s; color:var(--gold); }
+  .floating-leaf.l3{ animation-duration:34s; animation-delay:-14s; color:var(--dusty-pink); }
 
+  @keyframes drift{
+    0%{ transform:translate(0,0) rotate(0deg); }
+    25%{ transform:translate(18px,-24px) rotate(8deg); }
+    50%{ transform:translate(-10px,-40px) rotate(-6deg); }
+    75%{ transform:translate(-22px,-14px) rotate(4deg); }
+    100%{ transform:translate(0,0) rotate(0deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .floating-leaf{ animation:none; }
+  }
   section{
     position:relative;
     z-index:1;
@@ -224,7 +246,8 @@
     opacity:0.75;
     margin-top:0.3rem;
   }
-  .map-link{
+.map-link{
+    position:relative;
     display:inline-flex;
     align-items:center;
     gap:0.5rem;
@@ -233,11 +256,19 @@
     letter-spacing:0.06em;
     color:var(--forest);
     text-decoration:none;
-    border-bottom:1px solid var(--dusty-pink);
     padding-bottom:2px;
-    transition:opacity 0.2s;
   }
-  .map-link:hover{ opacity:0.65; }
+  .map-link::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:100%; height:1px;
+    background:var(--dusty-pink);
+    transform:scaleX(1);
+    transform-origin:left;
+    transition:transform 0.3s ease;
+  }
+  .map-link:hover::after{ transform:scaleX(0); transform-origin:right; }
 
   .rsvp{
     background:var(--forest-deep);
@@ -272,16 +303,27 @@
     border:0;
     display:block;
   }
-  .form-fallback{
+.form-fallback{
+    position:relative;
     display:inline-block;
     margin-top:1.6rem;
     font-size:0.8rem;
     letter-spacing:0.06em;
     color:var(--dusty-pink);
     text-decoration:none;
-    border-bottom:1px solid rgba(217,183,180,0.5);
     padding-bottom:2px;
   }
+  .form-fallback::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:100%; height:1px;
+    background:rgba(217,183,180,0.5);
+    transform:scaleX(1);
+    transform-origin:left;
+    transition:transform 0.3s ease;
+  }
+  .form-fallback:hover::after{ transform:scaleX(0); transform-origin:right; }
 
   footer{
     text-align:center;
@@ -333,7 +375,9 @@
 </style>
 </head>
 <body>
-
+<svg class="floating-leaf" style="top:12%; left:8%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+<svg class="floating-leaf l2" style="top:55%; right:10%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+<svg class="floating-leaf l3" style="top:80%; left:14%; width:20px; height:20px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-frame">
