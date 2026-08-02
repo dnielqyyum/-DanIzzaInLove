@@ -320,14 +320,14 @@
   <div class="scroll-cue">Scroll</div>
 </section>
 
-<div class="divider" style="margin:0 auto; padding:0 1.5rem;">
+<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
   <span class="line"></span>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
   <span class="line"></span>
 </div>
 
 <!-- FILM -->
-<section class="film-section">
+<section class="film-section reveal">
   <p class="eyebrow">We inviting you</p>
   <h2>An invitation video</h2>
   <p class="note">Dengan izin-Nya, kami abadikan sebuah undangan dalam bentuk video sebagai tanda jemputan ke majlis pernikahan kami. Semoga segala maklumat yang disampaikan menjadi panduan, dan semoga kita dapat bersama-sama berkongsi detik yang penuh bermakna ini.</p>
@@ -339,14 +339,14 @@
   </div>
 </section>
 
-<div class="divider" style="margin:0 auto; padding:0 1.5rem;">
+<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
   <span class="line"></span>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
   <span class="line"></span>
 </div>
 
 <!-- DETAILS -->
-<section class="details">
+<section class="details reveal">
   <p class="eyebrow">bersama-sama meraikan hari bahagia kami</p>
   <h2>Butiran Majlis</h2>
   <div class="detail-grid">
@@ -387,7 +387,7 @@
 </section>
 
 <!-- RSVP -->
-<section class="rsvp" id="rsvp">
+<section class="rsvp reveal" id="rsvp">
   <p class="eyebrow">Mohon Maklum Balas</p>
   <h2>RSVP</h2>
   <p class="note">Diharapkan pengesahan kehadiran dapat diberikan sebelum 19 September 2026. Kerjasama anda amat kami hargai bagi membantu kami membuat persiapan rapi untuk hari yang penuh bermakna ini.</p>
@@ -405,6 +405,17 @@
 <footer>
   Dengan penuh rasa cinta, Daniel Qayyum &amp; Izza Nabila
 </footer>
-
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
