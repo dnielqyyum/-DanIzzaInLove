@@ -4,8 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akad Nikah — Daniel Qayyum &amp; Izza Nabila</title>
+
+<!-- FIX: Preconnect to Google Fonts for faster loading -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- FIX: Changed display=swap to display=block to prevent font flash -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=block" rel="stylesheet">
+
 <style>
   :root {
     --ivory: #F7F3EA;
@@ -839,11 +844,8 @@
   Dengan penuh rasa cinta, Daniel Qayyum &amp; Izza Nabila
 </footer>
 
-<!-- ==============================================
-     FIXED: BACKGROUND MUSIC (HTML moved outside script)
-     ============================================== -->
+<!-- BACKGROUND MUSIC -->
 <audio id="bgMusic" loop preload="none">
-  <!-- Replace 'bg-music.mp3' with your actual music file name -->
   <source src="bg-music.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
@@ -875,7 +877,6 @@
     document.body.style.overflow = 'auto';
   });
 
-  // Lock scrolling while overlay is visible
   document.body.style.overflow = 'hidden';
 
   // ============================================
@@ -909,59 +910,97 @@
   setInterval(updateCountdown, 1000);
 
   // ============================================
-// BACKGROUND MUSIC - Start at 0:49 & Loop
-// ============================================
-const audio = document.getElementById('bgMusic');
-const musicIcon = document.getElementById('musicIcon');
-let isMusicPlaying = false;
-const START_TIME = 49; // Start at 49 seconds
+  // BACKGROUND MUSIC - Start at 0:49 & Loop
+  // ============================================
+  const audio = document.getElementById('bgMusic');
+  const musicIcon = document.getElementById('musicIcon');
+  let isMusicPlaying = false;
+  const START_TIME = 49; // Start at 49 seconds
 
-audio.addEventListener('loadedmetadata', function() {
-    // Set the start time when metadata is loaded
+  // When the song loads, set the starting point to 0:49
+  audio.addEventListener('loadedmetadata', function() {
     if (this.duration > START_TIME) {
-        this.currentTime = START_TIME;
+      this.currentTime = START_TIME;
     }
     console.log('✅ Music loaded, start time set to 49s');
-});
+  });
 
-audio.addEventListener('ended', function() {
-    // When the song ends, reset to 49 seconds and keep playing
+  // When the song ends, reset to 0:49 and keep playing
+  audio.addEventListener('ended', function() {
     this.currentTime = START_TIME;
     if (isMusicPlaying) {
-        this.play().catch(function(e) { /* ignore */ });
+      this.play().catch(function(e) { /* ignore errors */ });
     }
-});
+  });
 
-document.getElementById('music-toggle').addEventListener('click', function() {
+  // Music button toggle
+  document.getElementById('music-toggle').addEventListener('click', function() {
     if (isMusicPlaying) {
+      audio.pause();
+      musicIcon.textContent = '♫';
+      isMusicPlaying = false;
+    } else {
+      // Ensure it starts at 0:49 if it's at 0 or somewhere else
+      if (audio.currentTime < START_TIME || audio.currentTime === 0) {
+        audio.currentTime = START_TIME;
+      }
+      audio.play()
+        .then(function() {
+          musicIcon.textContent = '♪';
+          isMusicPlaying = true;
+        })
+        .catch(function(error) {
+          alert('Muzik tidak dapat dimainkan. Sila klik sekali lagi.');
+        });
+    }
+  });
+
+  // If audio fails to load, log it
+  audio.addEventListener('error', function(e) {
+    console.log('❌ Music failed to load.');
+  });
+
+  // ============================================
+  // NEW: VIDEO & MUSIC INTERACTION
+  // ============================================
+  const video = document.querySelector('video');
+  let wasMusicPlaying = false;
+
+  if (video) {
+    video.addEventListener('play', function() {
+      // If music is currently playing, pause it and remember we paused it
+      if (isMusicPlaying) {
+        wasMusicPlaying = true;
         audio.pause();
         musicIcon.textContent = '♫';
-        isMusicPlaying = false;
-    } else {
-        // Ensure it starts at 49 if it's paused at 0 or somewhere else
+        // isMusicPlaying stays true because we only paused it temporarily
+      } else {
+        wasMusicPlaying = false;
+      }
+      console.log('🎬 Video started, music paused (was playing: ' + wasMusicPlaying + ')');
+    });
+
+    video.addEventListener('pause', function() {
+      // If music was playing before the video started, resume it
+      if (wasMusicPlaying) {
+        // Ensure it starts at 0:49 if needed
         if (audio.currentTime < START_TIME || audio.currentTime === 0) {
-            audio.currentTime = START_TIME;
+          audio.currentTime = START_TIME;
         }
         audio.play()
-            .then(function() {
-                musicIcon.textContent = '♪';
-                isMusicPlaying = true;
-            })
-            .catch(function(error) {
-                alert('Muzik tidak dapat dimainkan. Sila klik sekali lagi.');
-            });
-    }
-});
+          .then(function() {
+            musicIcon.textContent = '♪';
+            isMusicPlaying = true;
+            console.log('▶️ Video paused, music resumed');
+          })
+          .catch(function() { /* ignore errors */ });
+      } else {
+        console.log('⏸️ Video paused, but music was already off.');
+      }
+    });
+  }
 
-audio.addEventListener('error', function(e) {
-    console.log('❌ Music failed to load.');
-});
-
-  // Reset icon if audio ends naturally
-  audio.addEventListener('ended', function() {
-    isMusicPlaying = false;
-    musicIcon.textContent = '♫';
-  });
+  console.log('🎵 All systems ready!');
 </script> 
 </body>
 </html>
