@@ -828,9 +828,6 @@
   <h2>RSVP</h2>
   <p class="note">Diharapkan pengesahan kehadiran dapat diberikan sebelum 19 September 2026. Kerjasama anda amat kami hargai bagi membantu kami membuat persiapan rapi untuk hari yang penuh bermakna ini.</p>
   <div class="form-wrap">
-    <!-- NOTE: forms.gle short links cannot be embedded in an iframe.
-         Replace this src with your form's real embed link:
-         Google Forms → Send → the <> icon → copy the src="..." value → paste it here. -->
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?embedded=true">Loading…</iframe>
   </div>
   <a class="form-fallback" href="https://forms.gle/8daSoxqV7rbbt3Qp6" target="_blank" rel="noopener">
@@ -841,7 +838,24 @@
 <footer>
   Dengan penuh rasa cinta, Daniel Qayyum &amp; Izza Nabila
 </footer>
+
+<!-- ==============================================
+     FIXED: BACKGROUND MUSIC (HTML moved outside script)
+     ============================================== -->
+<audio id="bgMusic" loop preload="none">
+  <!-- Replace 'bg-music.mp3' with your actual music file name -->
+  <source src="bg-music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<button id="music-toggle" aria-label="Toggle background music">
+  <span class="icon" id="musicIcon">♫</span>
+</button>
+
 <script>
+  // ============================================
+  // SCROLL REVEAL
+  // ============================================
   const revealEls = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -852,17 +866,19 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach(el => observer.observe(el));
-// ============================================
-// SILA BUKA OVERLAY - Open Button
-// ============================================
-document.getElementById('btnOpenInvite').addEventListener('click', function() {
-  document.getElementById('opening-overlay').classList.add('hidden');
-  document.body.style.overflow = 'auto';
-});
 
-// Lock scrolling while overlay is visible
-document.body.style.overflow = 'hidden';
- // ============================================
+  // ============================================
+  // SILA BUKA OVERLAY - Open Button
+  // ============================================
+  document.getElementById('btnOpenInvite').addEventListener('click', function() {
+    document.getElementById('opening-overlay').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  });
+
+  // Lock scrolling while overlay is visible
+  document.body.style.overflow = 'hidden';
+
+  // ============================================
   // LIVE COUNTDOWN (26 Sept 2026, 8:00 AM)
   // ============================================
   function updateCountdown() {
@@ -891,16 +907,7 @@ document.body.style.overflow = 'hidden';
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
-<!-- BACKGROUND MUSIC -->
-<audio id="bgMusic" loop preload="none">
-  <!-- Replace 'bg-music.mp3' with your actual music file name -->
-  <source src="bg-music.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
 
-<button id="music-toggle" aria-label="Toggle background music">
-  <span class="icon" id="musicIcon">♫</span>
-</button>
   // ============================================
   // BACKGROUND MUSIC - Toggle Play/Pause
   // ============================================
