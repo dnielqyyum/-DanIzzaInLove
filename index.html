@@ -844,7 +844,7 @@
      ============================================== -->
 <audio id="bgMusic" loop preload="none">
   <!-- Replace 'bg-music.mp3' with your actual music file name -->
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  <source src="bg-music.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -909,25 +909,53 @@
   setInterval(updateCountdown, 1000);
 
   // ============================================
-  // BACKGROUND MUSIC - Toggle Play/Pause
-  // ============================================
-  const audio = document.getElementById('bgMusic');
-  const musicIcon = document.getElementById('musicIcon');
-  let isMusicPlaying = false;
+// BACKGROUND MUSIC - Start at 0:49 & Loop
+// ============================================
+const audio = document.getElementById('bgMusic');
+const musicIcon = document.getElementById('musicIcon');
+let isMusicPlaying = false;
+const START_TIME = 49; // Start at 49 seconds
 
-  document.getElementById('music-toggle').addEventListener('click', function() {
-    if (isMusicPlaying) {
-      audio.pause();
-      musicIcon.textContent = '♫';
-      isMusicPlaying = false;
-    } else {
-      audio.play().catch(function() {
-        alert('Sila klik sekali lagi untuk memainkan muzik latar.');
-      });
-      musicIcon.textContent = '♪';
-      isMusicPlaying = true;
+audio.addEventListener('loadedmetadata', function() {
+    // Set the start time when metadata is loaded
+    if (this.duration > START_TIME) {
+        this.currentTime = START_TIME;
     }
-  });
+    console.log('✅ Music loaded, start time set to 49s');
+});
+
+audio.addEventListener('ended', function() {
+    // When the song ends, reset to 49 seconds and keep playing
+    this.currentTime = START_TIME;
+    if (isMusicPlaying) {
+        this.play().catch(function(e) { /* ignore */ });
+    }
+});
+
+document.getElementById('music-toggle').addEventListener('click', function() {
+    if (isMusicPlaying) {
+        audio.pause();
+        musicIcon.textContent = '♫';
+        isMusicPlaying = false;
+    } else {
+        // Ensure it starts at 49 if it's paused at 0 or somewhere else
+        if (audio.currentTime < START_TIME || audio.currentTime === 0) {
+            audio.currentTime = START_TIME;
+        }
+        audio.play()
+            .then(function() {
+                musicIcon.textContent = '♪';
+                isMusicPlaying = true;
+            })
+            .catch(function(error) {
+                alert('Muzik tidak dapat dimainkan. Sila klik sekali lagi.');
+            });
+    }
+});
+
+audio.addEventListener('error', function(e) {
+    console.log('❌ Music failed to load.');
+});
 
   // Reset icon if audio ends naturally
   audio.addEventListener('ended', function() {
