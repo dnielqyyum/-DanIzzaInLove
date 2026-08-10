@@ -869,14 +869,38 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => observer.observe(el));
 
-  // ============================================
-  // SILA BUKA OVERLAY - Open Button
+    // ============================================
+  // SILA BUKA OVERLAY - Open Button + Autoplay Music
   // ============================================
   document.getElementById('btnOpenInvite').addEventListener('click', function() {
+    // 1. Hide the overlay
     document.getElementById('opening-overlay').classList.add('hidden');
     document.body.style.overflow = 'auto';
+
+    // 2. AUTOPLAY THE BACKGROUND MUSIC (from 0:49)
+    // Check if music is not already playing
+    if (!isMusicPlaying) {
+      // Ensure it starts at 0:49 if it's at 0 or reset
+      if (audio.currentTime < START_TIME || audio.currentTime === 0) {
+        audio.currentTime = START_TIME;
+      }
+      // Play the audio
+      audio.play()
+        .then(function() {
+          // Update the icon and state
+          musicIcon.textContent = '♪';
+          isMusicPlaying = true;
+          console.log('▶️ Music autoplayed on opening invitation.');
+        })
+        .catch(function(error) {
+          // If the browser blocks it (very rare since we clicked), keep the icon as ♫
+          console.log('Autoplay blocked or failed:', error);
+          // User can still click the ♫ button manually.
+        });
+    }
   });
 
+  // Lock scrolling while overlay is visible
   document.body.style.overflow = 'hidden';
 
   // ============================================
