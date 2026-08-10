@@ -619,6 +619,19 @@
 </style>
 </head>
 <body>
+<!-- SILA BUKA OVERLAY -->
+<div id="opening-overlay">
+  <div class="opening-card">
+    <span class="deco-line"></span>
+    <h2>Kepada Tetamu Yang Dihormati</h2>
+    <h1>Daniel Qayyum <em>&amp;</em> Izza Nabila</h1>
+    <div class="invite-text">
+      Sila Buka Undangan Ini
+      <span>— Dengan segala hormatnya —</span>
+    </div>
+    <button class="btn-open" id="btnOpenInvite">Buka Jemputan</button>
+  </div>
+</div>  
 <svg class="floating-leaf" style="top:12%; left:8%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf l2" style="top:55%; right:10%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf l3" style="top:80%; left:14%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
@@ -738,5 +751,14 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => observer.observe(el));
 </script>
-</body>
+// ============================================
+// SILA BUKA OVERLAY - Open Button
+// ============================================
+document.getElementById('btnOpenInvite').addEventListener('click', function() {
+  document.getElementById('opening-overlay').classList.add('hidden');
+  document.body.style.overflow = 'auto';
+});
+
+// Lock scrolling while overlay is visible
+document.body.style.overflow = 'hidden';</body>
 </html>
