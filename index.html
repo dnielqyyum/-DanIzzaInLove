@@ -134,24 +134,27 @@
     margin: 0 0.15rem;
   }
 
-  .gate-sub {
-    font-family: 'Jost', sans-serif;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.85);
-    letter-spacing: 0.05em;
-    margin: 1.8rem 0 2.4rem 0;
-    line-height: 1.8;
-  }
+ .gate-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.05em;
+  margin: 1.8rem 0 2.4rem 0;
+  line-height: 1.8;
+  text-align: center;  /* ← ADD THIS LINE */
+}
 
   .gate-sub span {
-    display: block;
-    font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: var(--gold);
-    margin-top: 0.3rem;
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
+}
 
   .btn-open {
     background: transparent;
@@ -1003,6 +1006,12 @@
   .gate-sub {
     font-size: 0.9rem;
   }
+  .gate-sub span {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  text-align: center;
+  width: 100%;
+}
   .btn-open {
     padding: 0.7rem 2.2rem;
     font-size: 0.75rem;
