@@ -137,18 +137,6 @@
   /* ==============================================
      HERO BLOOM ANIMATION
      ============================================== */
-  .hero-content-bloom {
-    opacity: 0;
-    transform: scale(0.85);
-    transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  .hero-content-bloom.bloom {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  /* We'll add a class to the hero content wrapper later */
   .hero-content-wrapper {
     opacity: 0;
     transform: scale(0.85);
@@ -159,10 +147,6 @@
     opacity: 1;
     transform: scale(1);
   }
-
-  /* ==============================================
-     REST OF YOUR ORIGINAL STYLES (unchanged)
-     ============================================== */
 
   .opening-card .deco-line {
     display: block;
@@ -243,7 +227,7 @@
   }
 
   /* ==============================================
-     FLOATING LEAVES (unchanged)
+     FLOATING LEAVES
      ============================================== */
   .floating-leaf {
     position: fixed;
@@ -279,7 +263,7 @@
   }
 
   /* ==============================================
-     HERO SECTION (modified for bloom wrapper)
+     HERO SECTION
      ============================================== */
   section {
     position: relative;
@@ -301,7 +285,6 @@
   }
 
   .hero-content-wrapper {
-    /* This wrapper will get the bloom class */
     width: 100%;
   }
 
@@ -467,78 +450,7 @@
   }
 
   /* ==============================================
-     NEW: ATURCARA MAJLIS (Schedule)
-     ============================================== */
-  .schedule-section {
-    text-align: center;
-  }
-
-  .schedule-section h2 {
-    font-size: clamp(1.8rem, 5vw, 2.6rem);
-    color: var(--forest-deep);
-    margin: 0.8rem 0 0.5rem;
-  }
-
-  .schedule-section .note {
-    font-size: 0.88rem;
-    color: var(--forest);
-    max-width: 420px;
-    margin: 0 auto 2rem;
-    line-height: 1.7;
-  }
-
-  .schedule-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    max-width: 480px;
-    margin: 0 auto;
-    text-align: left;
-  }
-
-  .schedule-item {
-    display: flex;
-    align-items: baseline;
-    gap: 1.2rem;
-    padding: 1rem 1.5rem;
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(4px);
-    border-radius: 4px;
-    border-left: 3px solid var(--gold);
-    transition: transform 0.25s ease;
-  }
-
-  .schedule-item:hover {
-    transform: translateX(6px);
-  }
-
-  .schedule-item .time {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 600;
-    color: var(--forest-deep);
-    font-size: 1.2rem;
-    min-width: 100px;
-  }
-
-  .schedule-item .event {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    color: var(--forest-deep);
-  }
-
-  .schedule-item .event small {
-    display: block;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 300;
-    color: var(--forest);
-    font-style: italic;
-    margin-top: 2px;
-    letter-spacing: 0.02em;
-  }
-
-  /* ==============================================
-     REST OF YOUR STYLES (Details, RSVP, etc.)
+     DETAILS (Butiran Majlis)
      ============================================== */
   .details {
     text-align: center;
@@ -641,6 +553,80 @@
     transform-origin: right;
   }
 
+  /* ==============================================
+     NEW: ATURCARA MAJLIS (Schedule - MOVED HERE)
+     ============================================== */
+  .schedule-section {
+    text-align: center;
+  }
+
+  .schedule-section h2 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: var(--forest-deep);
+    margin: 0.8rem 0 0.5rem;
+  }
+
+  .schedule-section .note {
+    font-size: 0.88rem;
+    color: var(--forest);
+    max-width: 420px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .schedule-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 4px;
+    border-left: 3px solid var(--gold);
+    transition: transform 0.25s ease;
+  }
+
+  .schedule-item:hover {
+    transform: translateX(6px);
+  }
+
+  .schedule-item .time {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: var(--forest-deep);
+    font-size: 1.2rem;
+    min-width: 100px;
+  }
+
+  .schedule-item .event {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--forest-deep);
+  }
+
+  .schedule-item .event small {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--forest);
+    font-style: italic;
+    margin-top: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ==============================================
+     RSVP
+     ============================================== */
   .rsvp {
     background: var(--forest-deep);
     color: var(--ivory);
@@ -782,7 +768,7 @@
   }
 
   /* ==============================================
-     COUNTDOWN & MUSIC BUTTON (your existing)
+     COUNTDOWN & MUSIC BUTTON
      ============================================== */
   .countdown-wrapper {
     text-align: center;
@@ -888,7 +874,9 @@
 <svg class="floating-leaf l2" style="top:63%; right:9%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf l3" style="top:44%; left:25%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 
-<!-- HERO SECTION -->
+<!-- ==============================================
+     HERO SECTION
+     ============================================== -->
 <section class="hero" id="heroSection">
   <div class="hero-content-wrapper" id="heroContentWrapper">
     <div class="hero-frame">
@@ -905,7 +893,9 @@
   </div>
 </section>
 
-<!-- COUNTDOWN -->
+<!-- ==============================================
+     COUNTDOWN
+     ============================================== -->
 <section class="countdown-wrapper reveal" style="padding-top: 0;">
   <p class="eyebrow">Menuju Hari Bahagia</p>
   <div class="countdown-grid" id="countdown">
@@ -923,7 +913,9 @@
   <span class="line"></span>
 </div>
 
-<!-- VIDEO JEMPUTAN -->
+<!-- ==============================================
+     VIDEO JEMPUTAN
+     ============================================== -->
 <section class="film-section reveal">
   <p class="eyebrow">Kami menjemput semua</p>
   <h2>Video jemputan</h2>
@@ -944,45 +936,8 @@
 </div>
 
 <!-- ==============================================
-     NEW: ATURCARA MAJLIS (Schedule)
+     BUTIRAN MAJLIS (Details) - MOVED UP
      ============================================== -->
-<section class="schedule-section reveal">
-  <p class="eyebrow">Alunan acara yang penuh makna</p>
-  <h2>Aturcara Majlis</h2>
-  <p class="note">Kami menjemput anda mengikuti rangkaian acara yang telah disusun dengan penuh kasih.</p>
-  <div class="schedule-list">
-    <div class="schedule-item">
-      <span class="time">8:00 Pagi</span>
-      <span class="event">
-        Istiadat Akad Nikah
-        <small>Detik sah pernikahan yang dinantikan</small>
-      </span>
-    </div>
-    <div class="schedule-item">
-      <span class="time">9:00 Pagi</span>
-      <span class="event">
-        Majlis Persandingan &amp; Penyerahan Mas Kahwin
-        <small>Simbolik penyatuan dua hati</small>
-      </span>
-    </div>
-    <div class="schedule-item">
-      <span class="time">10:00 Pagi</span>
-      <span class="event">
-        Jamuan Santapan &amp; Sesi Mesra Bersama Pengantin
-        <small>Makan, bergambar, dan beramah mesra</small>
-      </span>
-    </div>
-  </div>
-</section>
-
-<!-- DIVIDER -->
-<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
-  <span class="line"></span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
-  <span class="line"></span>
-</div>
-
-<!-- DETAILS -->
 <section class="details reveal">
   <p class="eyebrow">bersama-sama meraikan hari bahagia kami</p>
   <h2>Butiran Majlis</h2>
@@ -1024,7 +979,55 @@
   </div>
 </section>
 
-<!-- RSVP -->
+<!-- DIVIDER -->
+<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+  <span class="line"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+  <span class="line"></span>
+</div>
+
+<!-- ==============================================
+     ATURCARA MAJLIS (Schedule) - MOVED DOWN (after Details)
+     ============================================== -->
+<section class="schedule-section reveal">
+  <p class="eyebrow">Alunan acara yang penuh makna</p>
+  <h2>Aturcara Majlis</h2>
+  <p class="note">Kami menjemput anda mengikuti rangkaian acara yang telah disusun dengan penuh kasih.</p>
+  <div class="schedule-list">
+    <div class="schedule-item">
+      <span class="time">8:00 Pagi</span>
+      <span class="event">
+        Istiadat Akad Nikah
+        <small>Detik sah pernikahan yang dinantikan</small>
+      </span>
+    </div>
+    <div class="schedule-item">
+      <span class="time">9:00 Pagi</span>
+      <span class="event">
+        Majlis Persandingan &amp; Penyerahan Mas Kahwin
+        <small>Simbolik penyatuan dua hati</small>
+      </span>
+    </div>
+    <div class="schedule-item">
+      <span class="time">10:00 Pagi</span>
+      <span class="event">
+        Jamuan Santapan &amp; Sesi Mesra Bersama Pengantin
+        <small>Makan, bergambar, dan beramah mesra</small>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+  <span class="line"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+  <span class="line"></span>
+</div>
+
+<!-- ==============================================
+     RSVP
+     ============================================== -->
 <section class="rsvp reveal" id="rsvp">
   <p class="eyebrow">Mohon Maklum Balas</p>
   <h2>RSVP</h2>
@@ -1074,30 +1077,24 @@
   const glow = document.getElementById('goldenGlow');
 
   document.getElementById('btnOpenInvite').addEventListener('click', function() {
-    // 1. Hide overlay (fade out)
+    // 1. Hide overlay
     overlay.classList.add('hidden');
 
-    // 2. After a short delay (0.6s), trigger the bloom effect
+    // 2. Trigger bloom effect after delay
     setTimeout(function() {
-      // Trigger the golden glow
       glow.classList.remove('active');
-      // Force reflow to restart animation
       void glow.offsetWidth;
       glow.classList.add('active');
 
-      // 3. After glow starts (0.2s later), bloom the hero content
       setTimeout(function() {
         heroWrapper.classList.add('bloom');
       }, 200);
 
-      // 4. Enable scrolling (already done when overlay fades)
       document.body.style.overflow = 'auto';
+    }, 600);
 
-    }, 600); // matches overlay transition duration
-
-    // 5. Autoplay music (immediately after click, because user gesture)
+    // 3. Autoplay music
     if (typeof audio !== 'undefined' && !isMusicPlaying) {
-      // Ensure audio starts at 49s
       if (audio.currentTime < 49 || audio.currentTime === 0) {
         audio.currentTime = 49;
       }
@@ -1105,7 +1102,6 @@
         .then(function() {
           musicIcon.textContent = '♪';
           isMusicPlaying = true;
-          console.log('▶️ Music autoplayed.');
         })
         .catch(function(error) {
           console.log('Autoplay blocked:', error);
@@ -1113,11 +1109,10 @@
     }
   });
 
-  // Lock scrolling initially
   document.body.style.overflow = 'hidden';
 
   // ============================================
-  // LIVE COUNTDOWN (26 Sept 2026, 8:00 AM)
+  // LIVE COUNTDOWN
   // ============================================
   function updateCountdown() {
     const wedding = new Date('Sep 26, 2026 08:00:00').getTime();
@@ -1158,13 +1153,12 @@
     if (this.duration > START_TIME) {
       this.currentTime = START_TIME;
     }
-    console.log('✅ Music loaded, start time set to 49s');
   });
 
   audio.addEventListener('ended', function() {
     this.currentTime = START_TIME;
     if (isMusicPlaying) {
-      this.play().catch(function(e) { /* ignore */ });
+      this.play().catch(function(e) {});
     }
   });
 
@@ -1219,12 +1213,10 @@
             musicIcon.textContent = '♪';
             isMusicPlaying = true;
           })
-          .catch(function() { /* ignore */ });
+          .catch(function() {});
       }
     });
   }
-
-  console.log('🎵 All systems ready!');
 </script>
 </body>
 </html>
