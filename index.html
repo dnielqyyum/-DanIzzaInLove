@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akad Nikah — Daniel Qayyum &amp; Izza Nabila</title>
 
-<!-- FIX: Preconnect to Google Fonts for faster loading -->
+<!-- Preconnect for faster fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- FIX: Changed display=swap to display=block to prevent font flash -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=block" rel="stylesheet">
 
 <style>
@@ -57,7 +56,7 @@
   }
 
   /* ==============================================
-     SILA BUKA OVERLAY (Clean, no emojis)
+     SILA BUKA OVERLAY (Blooming Effect)
      ============================================== */
   #opening-overlay {
     position: fixed;
@@ -84,7 +83,86 @@
     max-width: 560px;
     width: 90%;
     position: relative;
+    opacity: 1;
+    transition: opacity 0.8s ease;
   }
+
+  #opening-overlay.hidden .opening-card {
+    opacity: 0;
+  }
+
+  /* ==============================================
+     GOLDEN GLOW (for blooming effect)
+     ============================================== */
+  .golden-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168,137,79,0.4) 0%, rgba(168,137,79,0) 70%);
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 0;
+    pointer-events: none;
+    transition: none;
+    opacity: 0;
+  }
+
+  .golden-glow.active {
+    animation: glowPulse 1.2s ease forwards;
+  }
+
+  @keyframes glowPulse {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    30% {
+      opacity: 1;
+      width: 80vw;
+      height: 80vw;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      opacity: 0;
+      width: 120vw;
+      height: 120vw;
+      transform: translate(-50%, -50%) scale(1.5);
+    }
+  }
+
+  /* ==============================================
+     HERO BLOOM ANIMATION
+     ============================================== */
+  .hero-content-bloom {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .hero-content-bloom.bloom {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* We'll add a class to the hero content wrapper later */
+  .hero-content-wrapper {
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .hero-content-wrapper.bloom {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* ==============================================
+     REST OF YOUR ORIGINAL STYLES (unchanged)
+     ============================================== */
 
   .opening-card .deco-line {
     display: block;
@@ -165,7 +243,7 @@
   }
 
   /* ==============================================
-     FLOATING LEAVES (Your original, cleaned up)
+     FLOATING LEAVES (unchanged)
      ============================================== */
   .floating-leaf {
     position: fixed;
@@ -201,7 +279,7 @@
   }
 
   /* ==============================================
-     HERO SECTION (Your original, cleaned up)
+     HERO SECTION (modified for bloom wrapper)
      ============================================== */
   section {
     position: relative;
@@ -220,6 +298,11 @@
     text-align: center;
     padding: 3rem 1.5rem;
     position: relative;
+  }
+
+  .hero-content-wrapper {
+    /* This wrapper will get the bloom class */
+    width: 100%;
   }
 
   .hero-frame {
@@ -383,6 +466,80 @@
     border: 0;
   }
 
+  /* ==============================================
+     NEW: ATURCARA MAJLIS (Schedule)
+     ============================================== */
+  .schedule-section {
+    text-align: center;
+  }
+
+  .schedule-section h2 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: var(--forest-deep);
+    margin: 0.8rem 0 0.5rem;
+  }
+
+  .schedule-section .note {
+    font-size: 0.88rem;
+    color: var(--forest);
+    max-width: 420px;
+    margin: 0 auto 2rem;
+    line-height: 1.7;
+  }
+
+  .schedule-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .schedule-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(4px);
+    border-radius: 4px;
+    border-left: 3px solid var(--gold);
+    transition: transform 0.25s ease;
+  }
+
+  .schedule-item:hover {
+    transform: translateX(6px);
+  }
+
+  .schedule-item .time {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: var(--forest-deep);
+    font-size: 1.2rem;
+    min-width: 100px;
+  }
+
+  .schedule-item .event {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--forest-deep);
+  }
+
+  .schedule-item .event small {
+    display: block;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--forest);
+    font-style: italic;
+    margin-top: 2px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ==============================================
+     REST OF YOUR STYLES (Details, RSVP, etc.)
+     ============================================== */
   .details {
     text-align: center;
   }
@@ -614,6 +771,8 @@
       transform: none !important;
     }
     .video-wrap { transition: none; }
+    .golden-glow.active { animation: none; opacity: 0; }
+    .hero-content-wrapper { opacity: 1 !important; transform: none !important; }
   }
 
   a:focus-visible,
@@ -621,8 +780,9 @@
     outline: 2px solid var(--gold);
     outline-offset: 3px;
   }
+
   /* ==============================================
-     LIVE COUNTDOWN TIMER (Clean, no emojis)
+     COUNTDOWN & MUSIC BUTTON (your existing)
      ============================================== */
   .countdown-wrapper {
     text-align: center;
@@ -664,9 +824,7 @@
     display: block;
     margin-top: 2px;
   }
-  /* ==============================================
-     BACKGROUND MUSIC BUTTON (Clean, no emojis)
-     ============================================== */
+
   #music-toggle {
     position: fixed;
     bottom: 1.8rem;
@@ -704,6 +862,10 @@
 </style>
 </head>
 <body>
+
+<!-- GOLDEN GLOW (bloom effect) -->
+<div class="golden-glow" id="goldenGlow"></div>
+
 <!-- SILA BUKA OVERLAY -->
 <div id="opening-overlay">
   <div class="opening-card">
@@ -716,57 +878,52 @@
     </div>
     <button class="btn-open" id="btnOpenInvite">Buka Jemputan</button>
   </div>
-</div>  
+</div>
+
+<!-- FLOATING LEAVES -->
 <svg class="floating-leaf" style="top:12%; left:8%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf l2" style="top:55%; right:10%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf l3" style="top:80%; left:14%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf" style="top:20%; left:19%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf l2" style="top:63%; right:9%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
 <svg class="floating-leaf l3" style="top:44%; left:25%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-frame">
-    <p class="eyebrow">Sabait Ijab, Sakalun Qabul</p>
-    <h1>Daniel Qayyum<em>&amp;</em>Izza Nabila</h1>
-    <p class="sub">#DanIzzainLove</p>
-    <div class="date-badge">
-      <span>Sabtu, 26 September 2026</span>
-      <span class="dot"></span>
-      <span>Tepian Rimba Villa</span>
+
+<!-- HERO SECTION -->
+<section class="hero" id="heroSection">
+  <div class="hero-content-wrapper" id="heroContentWrapper">
+    <div class="hero-frame">
+      <p class="eyebrow">Sabait Ijab, Sakalun Qabul</p>
+      <h1>Daniel Qayyum<em>&amp;</em>Izza Nabila</h1>
+      <p class="sub">#DanIzzainLove</p>
+      <div class="date-badge">
+        <span>Sabtu, 26 September 2026</span>
+        <span class="dot"></span>
+        <span>Tepian Rimba Villa</span>
+      </div>
     </div>
+    <div class="scroll-cue">Scroll</div>
   </div>
-  <div class="scroll-cue">Scroll</div>
-<!-- LIVE COUNTDOWN TIMER -->
-<section class="countdown-wrapper reveal">
-  <p class="eyebrow">Menuju Hari Bahagia</p>
-  <div class="countdown-grid" id="countdown">
-    <div class="countdown-item">
-      <span class="num" id="days">00</span>
-      <span class="label">Hari</span>
-    </div>
-    <div class="countdown-item">
-      <span class="num" id="hours">00</span>
-      <span class="label">Jam</span>
-    </div>
-    <div class="countdown-item">
-      <span class="num" id="minutes">00</span>
-      <span class="label">Minit</span>
-    </div>
-    <div class="countdown-item">
-      <span class="num" id="seconds">00</span>
-      <span class="label">Saat</span>
-    </div>
-  </div>
-</section>
 </section>
 
+<!-- COUNTDOWN -->
+<section class="countdown-wrapper reveal" style="padding-top: 0;">
+  <p class="eyebrow">Menuju Hari Bahagia</p>
+  <div class="countdown-grid" id="countdown">
+    <div class="countdown-item"><span class="num" id="days">00</span><span class="label">Hari</span></div>
+    <div class="countdown-item"><span class="num" id="hours">00</span><span class="label">Jam</span></div>
+    <div class="countdown-item"><span class="num" id="minutes">00</span><span class="label">Minit</span></div>
+    <div class="countdown-item"><span class="num" id="seconds">00</span><span class="label">Saat</span></div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
 <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
   <span class="line"></span>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
   <span class="line"></span>
 </div>
 
-<!-- FILM -->
+<!-- VIDEO JEMPUTAN -->
 <section class="film-section reveal">
   <p class="eyebrow">Kami menjemput semua</p>
   <h2>Video jemputan</h2>
@@ -779,6 +936,46 @@
   </div>
 </section>
 
+<!-- DIVIDER -->
+<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+  <span class="line"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+  <span class="line"></span>
+</div>
+
+<!-- ==============================================
+     NEW: ATURCARA MAJLIS (Schedule)
+     ============================================== -->
+<section class="schedule-section reveal">
+  <p class="eyebrow">Alunan acara yang penuh makna</p>
+  <h2>Aturcara Majlis</h2>
+  <p class="note">Kami menjemput anda mengikuti rangkaian acara yang telah disusun dengan penuh kasih.</p>
+  <div class="schedule-list">
+    <div class="schedule-item">
+      <span class="time">8:00 Pagi</span>
+      <span class="event">
+        Istiadat Akad Nikah
+        <small>Detik sah pernikahan yang dinantikan</small>
+      </span>
+    </div>
+    <div class="schedule-item">
+      <span class="time">9:00 Pagi</span>
+      <span class="event">
+        Majlis Persandingan &amp; Penyerahan Mas Kahwin
+        <small>Simbolik penyatuan dua hati</small>
+      </span>
+    </div>
+    <div class="schedule-item">
+      <span class="time">10:00 Pagi</span>
+      <span class="event">
+        Jamuan Santapan &amp; Sesi Mesra Bersama Pengantin
+        <small>Makan, bergambar, dan beramah mesra</small>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
 <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
   <span class="line"></span>
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
@@ -797,8 +994,8 @@
       <div class="detail-text">
         <div class="label">Tarikh</div>
         <div class="value">Sabtu, 26 September 2026</div>
-       <div class="sub-value">Akad bermula 8.00 A.M.</div>
-<div class="sub-value">Tetamu dijemput hadir 7.45 A.M.</div>
+        <div class="sub-value">Akad bermula 8.00 A.M.</div>
+        <div class="sub-value">Tetamu dijemput hadir 7.45 A.M.</div>
       </div>
     </div>
     <div class="detail-item">
@@ -869,38 +1066,54 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el => observer.observe(el));
 
-    // ============================================
-  // SILA BUKA OVERLAY - Open Button + Autoplay Music
   // ============================================
-  document.getElementById('btnOpenInvite').addEventListener('click', function() {
-    // 1. Hide the overlay
-    document.getElementById('opening-overlay').classList.add('hidden');
-    document.body.style.overflow = 'auto';
+  // SILA BUKA OVERLAY + BLOOMING EFFECT + AUTOPLAY MUSIC
+  // ============================================
+  const overlay = document.getElementById('opening-overlay');
+  const heroWrapper = document.getElementById('heroContentWrapper');
+  const glow = document.getElementById('goldenGlow');
 
-    // 2. AUTOPLAY THE BACKGROUND MUSIC (from 0:49)
-    // Check if music is not already playing
-    if (!isMusicPlaying) {
-      // Ensure it starts at 0:49 if it's at 0 or reset
-      if (audio.currentTime < START_TIME || audio.currentTime === 0) {
-        audio.currentTime = START_TIME;
+  document.getElementById('btnOpenInvite').addEventListener('click', function() {
+    // 1. Hide overlay (fade out)
+    overlay.classList.add('hidden');
+
+    // 2. After a short delay (0.6s), trigger the bloom effect
+    setTimeout(function() {
+      // Trigger the golden glow
+      glow.classList.remove('active');
+      // Force reflow to restart animation
+      void glow.offsetWidth;
+      glow.classList.add('active');
+
+      // 3. After glow starts (0.2s later), bloom the hero content
+      setTimeout(function() {
+        heroWrapper.classList.add('bloom');
+      }, 200);
+
+      // 4. Enable scrolling (already done when overlay fades)
+      document.body.style.overflow = 'auto';
+
+    }, 600); // matches overlay transition duration
+
+    // 5. Autoplay music (immediately after click, because user gesture)
+    if (typeof audio !== 'undefined' && !isMusicPlaying) {
+      // Ensure audio starts at 49s
+      if (audio.currentTime < 49 || audio.currentTime === 0) {
+        audio.currentTime = 49;
       }
-      // Play the audio
       audio.play()
         .then(function() {
-          // Update the icon and state
           musicIcon.textContent = '♪';
           isMusicPlaying = true;
-          console.log('▶️ Music autoplayed on opening invitation.');
+          console.log('▶️ Music autoplayed.');
         })
         .catch(function(error) {
-          // If the browser blocks it (very rare since we clicked), keep the icon as ♫
-          console.log('Autoplay blocked or failed:', error);
-          // User can still click the ♫ button manually.
+          console.log('Autoplay blocked:', error);
         });
     }
   });
 
-  // Lock scrolling while overlay is visible
+  // Lock scrolling initially
   document.body.style.overflow = 'hidden';
 
   // ============================================
@@ -939,9 +1152,8 @@
   const audio = document.getElementById('bgMusic');
   const musicIcon = document.getElementById('musicIcon');
   let isMusicPlaying = false;
-  const START_TIME = 49; // Start at 49 seconds
+  const START_TIME = 49;
 
-  // When the song loads, set the starting point to 0:49
   audio.addEventListener('loadedmetadata', function() {
     if (this.duration > START_TIME) {
       this.currentTime = START_TIME;
@@ -949,22 +1161,19 @@
     console.log('✅ Music loaded, start time set to 49s');
   });
 
-  // When the song ends, reset to 0:49 and keep playing
   audio.addEventListener('ended', function() {
     this.currentTime = START_TIME;
     if (isMusicPlaying) {
-      this.play().catch(function(e) { /* ignore errors */ });
+      this.play().catch(function(e) { /* ignore */ });
     }
   });
 
-  // Music button toggle
   document.getElementById('music-toggle').addEventListener('click', function() {
     if (isMusicPlaying) {
       audio.pause();
       musicIcon.textContent = '♫';
       isMusicPlaying = false;
     } else {
-      // Ensure it starts at 0:49 if it's at 0 or somewhere else
       if (audio.currentTime < START_TIME || audio.currentTime === 0) {
         audio.currentTime = START_TIME;
       }
@@ -979,35 +1188,29 @@
     }
   });
 
-  // If audio fails to load, log it
   audio.addEventListener('error', function(e) {
     console.log('❌ Music failed to load.');
   });
 
   // ============================================
-  // NEW: VIDEO & MUSIC INTERACTION
+  // VIDEO & MUSIC INTERACTION
   // ============================================
   const video = document.querySelector('video');
   let wasMusicPlaying = false;
 
   if (video) {
     video.addEventListener('play', function() {
-      // If music is currently playing, pause it and remember we paused it
       if (isMusicPlaying) {
         wasMusicPlaying = true;
         audio.pause();
         musicIcon.textContent = '♫';
-        // isMusicPlaying stays true because we only paused it temporarily
       } else {
         wasMusicPlaying = false;
       }
-      console.log('🎬 Video started, music paused (was playing: ' + wasMusicPlaying + ')');
     });
 
     video.addEventListener('pause', function() {
-      // If music was playing before the video started, resume it
       if (wasMusicPlaying) {
-        // Ensure it starts at 0:49 if needed
         if (audio.currentTime < START_TIME || audio.currentTime === 0) {
           audio.currentTime = START_TIME;
         }
@@ -1015,16 +1218,13 @@
           .then(function() {
             musicIcon.textContent = '♪';
             isMusicPlaying = true;
-            console.log('▶️ Video paused, music resumed');
           })
-          .catch(function() { /* ignore errors */ });
-      } else {
-        console.log('⏸️ Video paused, but music was already off.');
+          .catch(function() { /* ignore */ });
       }
     });
   }
 
   console.log('🎵 All systems ready!');
-</script> 
+</script>
 </body>
 </html>
