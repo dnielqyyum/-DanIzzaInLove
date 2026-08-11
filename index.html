@@ -56,223 +56,121 @@
   }
 
   /* ==============================================
-     SILA BUKA OVERLAY (Blooming Effect)
+     OPENING GATE (Sila Buka)
      ============================================== */
-  #opening-overlay {
+  #gate {
     position: fixed;
     inset: 0;
+    z-index: 9999;
     background: var(--ivory);
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    opacity: 1;
-    pointer-events: all;
-  }
-
-  #opening-overlay.hidden {
-    opacity: 0;
-    transform: scale(1.02);
-    pointer-events: none;
-  }
-
-  .opening-card {
     text-align: center;
-    padding: 2.8rem 2rem;
-    max-width: 560px;
-    width: 90%;
-    position: relative;
-    opacity: 1;
-    transition: opacity 0.8s ease;
+    transition: opacity 1s ease, visibility 1s ease;
   }
 
-  #opening-overlay.hidden .opening-card {
+  #gate.opened {
     opacity: 0;
-  }
-
-  /* ==============================================
-     GOLDEN GLOW (for blooming effect)
-     ============================================== */
-  .golden-glow {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(168,137,79,0.4) 0%, rgba(168,137,79,0) 70%);
-    transform: translate(-50%, -50%) scale(0);
-    z-index: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: none;
-    opacity: 0;
   }
 
-  .golden-glow.active {
-    animation: glowPulse 1.2s ease forwards;
+  #gate::before,
+  #gate::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 70px;
+    background: linear-gradient(var(--gold), transparent);
   }
 
-  @keyframes glowPulse {
-    0% {
-      transform: translate(-50%, -50%) scale(0);
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    30% {
-      opacity: 1;
-      width: 80vw;
-      height: 80vw;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    100% {
-      opacity: 0;
-      width: 120vw;
-      height: 120vw;
-      transform: translate(-50%, -50%) scale(1.5);
-    }
+  #gate::before {
+    top: 8%;
   }
 
-  /* ==============================================
-     HERO BLOOM ANIMATION
-     ============================================== */
-  .hero-content-wrapper {
-    opacity: 0;
-    transform: scale(0.85);
-    transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  #gate::after {
+    bottom: 8%;
+    transform: translateX(-50%) rotate(180deg);
   }
 
-  .hero-content-wrapper.bloom {
-    opacity: 1;
-    transform: scale(1);
+  .gate-inner {
+    padding: 2rem;
+    animation: gateFloat 4s ease-in-out infinite;
   }
 
-  .opening-card .deco-line {
-    display: block;
-    width: 50px;
-    height: 1px;
-    background: var(--gold);
-    margin: 0 auto 1.5rem auto;
+  @keyframes gateFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
   }
 
-  .opening-card h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: 1.2rem;
-    letter-spacing: 6px;
+  .gate-inner svg {
+    width: 34px;
+    height: 34px;
     color: var(--gold);
+    margin-bottom: 1.2rem;
+    opacity: 0.85;
+  }
+
+  .gate-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    margin-bottom: 0.8rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
   }
 
-  .opening-card h1 {
+  .gate-names {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 10vw, 4.2rem);
+    font-size: clamp(2.2rem, 8vw, 3.4rem);
     color: var(--forest-deep);
-    margin: 0.5rem 0;
+    margin-bottom: 0.6rem;
   }
 
-  .opening-card h1 em {
+  .gate-names em {
     font-style: italic;
     color: var(--gold);
-    display: block;
-    font-size: 0.5em;
-    letter-spacing: 0.1em;
-    margin: 0.2rem 0;
   }
 
-  .opening-card .invite-text {
+  .gate-sub {
     font-family: 'Jost', sans-serif;
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--ink);
-    line-height: 1.8;
-    margin: 1.8rem 0 2.2rem 0;
-    letter-spacing: 0.04em;
-  }
-
-  .opening-card .invite-text span {
-    display: block;
-    font-size: 0.8rem;
-    letter-spacing: 4px;
-    color: var(--gold);
-    margin-top: 0.3rem;
-    text-transform: uppercase;
+    font-size: 0.85rem;
+    color: var(--forest);
+    letter-spacing: 0.05em;
+    margin-bottom: 2.4rem;
   }
 
   .btn-open {
     background: transparent;
     border: 1px solid var(--gold);
     color: var(--forest-deep);
-    padding: 0.9rem 3rem;
+    padding: 0.85rem 2.6rem;
     font-family: 'Jost', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 4px;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     border-radius: 999px;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
   }
 
   .btn-open:hover {
     background: var(--gold);
     color: var(--ivory);
-    box-shadow: 0 8px 30px rgba(168, 137, 79, 0.25);
+    box-shadow: 0 10px 30px -10px rgba(168, 137, 79, 0.5);
   }
 
-  .btn-open:active {
-    transform: scale(0.96);
-  }
-
-  /* ==============================================
-     FLOATING LEAVES
-     ============================================== */
-  .floating-leaf {
-    position: fixed;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.15;
-    color: var(--forest);
-    animation: drift 22s ease-in-out infinite;
-  }
-
-  .floating-leaf.l2 {
-    animation-duration: 28s;
-    animation-delay: -6s;
-    color: var(--gold);
-  }
-
-  .floating-leaf.l3 {
-    animation-duration: 34s;
-    animation-delay: -14s;
-    color: var(--dusty-pink);
-  }
-
-  @keyframes drift {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(18px, -24px) rotate(8deg); }
-    50% { transform: translate(-10px, -40px) rotate(-6deg); }
-    75% { transform: translate(-22px, -14px) rotate(4deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .floating-leaf { animation: none; }
+  body.locked {
+    overflow: hidden;
+    height: 100vh;
   }
 
   /* ==============================================
-     HERO SECTION
+     HERO SECTION (with background photo support)
      ============================================== */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 5.5rem 1.5rem;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-
   .hero {
     min-height: 100svh;
     display: flex;
@@ -282,10 +180,49 @@
     text-align: center;
     padding: 3rem 1.5rem;
     position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    animation: slowZoom 25s infinite alternate ease-in-out;
+    filter: blur(2px);
+    transform: scale(1);
+  }
+
+  .hero-bg.blur {
+    filter: blur(2px);
+  }
+
+  @keyframes slowZoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.12); }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: rgba(247, 243, 234, 0.6);
+    backdrop-filter: blur(1px);
   }
 
   .hero-content-wrapper {
+    position: relative;
+    z-index: 2;
     width: 100%;
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.8s ease, transform 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .hero-content-wrapper.bloom {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .hero-frame {
@@ -304,7 +241,10 @@
     background: linear-gradient(var(--gold), transparent);
   }
 
-  .hero-frame::before { top: 0; }
+  .hero-frame::before {
+    top: 0;
+  }
+
   .hero-frame::after {
     bottom: 0;
     transform: translateX(-50%) rotate(180deg);
@@ -373,6 +313,7 @@
     bottom: 2.2rem;
     left: 50%;
     transform: translateX(-50%);
+    font-family: 'Jost', sans-serif;
     font-size: 0.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -384,6 +325,53 @@
   @keyframes bob {
     0%, 100% { transform: translate(-50%, 0); }
     50% { transform: translate(-50%, 8px); }
+  }
+
+  /* ==============================================
+     FLOATING LEAVES
+     ============================================== */
+  .floating-leaf {
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.15;
+    color: var(--forest);
+    animation: drift 22s ease-in-out infinite;
+  }
+
+  .floating-leaf.l2 {
+    animation-duration: 28s;
+    animation-delay: -6s;
+    color: var(--gold);
+  }
+
+  .floating-leaf.l3 {
+    animation-duration: 34s;
+    animation-delay: -14s;
+    color: var(--dusty-pink);
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(18px, -24px) rotate(8deg); }
+    50% { transform: translate(-10px, -40px) rotate(-6deg); }
+    75% { transform: translate(-22px, -14px) rotate(4deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floating-leaf { animation: none; }
+  }
+
+  /* ==============================================
+     SECTION BASE
+     ============================================== */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 5.5rem 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
   }
 
   .divider {
@@ -407,6 +395,53 @@
     opacity: 0.8;
   }
 
+  /* ==============================================
+     COUNTDOWN
+     ============================================== */
+  .countdown-wrapper {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem 0;
+  }
+
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+  }
+
+  .countdown-item {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(4px);
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    min-width: 70px;
+    text-align: center;
+    border: 1px solid rgba(168, 137, 79, 0.2);
+  }
+
+  .countdown-item .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--forest-deep);
+    line-height: 1.2;
+  }
+
+  .countdown-item .label {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--forest);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ==============================================
+     VIDEO SECTION
+     ============================================== */
   .film-section {
     text-align: center;
   }
@@ -447,6 +482,87 @@
     aspect-ratio: 9/16;
     display: block;
     border: 0;
+  }
+
+  /* ==============================================
+     PHOTO GALLERY (Swipeable, no library)
+     ============================================== */
+  .gallery-section {
+    text-align: center;
+  }
+
+  .gallery-section h2 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: var(--forest-deep);
+    margin: 0.8rem 0 0.5rem;
+  }
+
+  .gallery-section p.note {
+    font-size: 0.88rem;
+    color: var(--forest);
+    max-width: 420px;
+    margin: 0 auto 2.4rem;
+    line-height: 1.7;
+  }
+
+  .gallery-track {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0.5rem 1.5rem 1.5rem;
+    max-width: 100vw;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .gallery-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-item {
+    flex: none;
+    width: min(78vw, 320px);
+    aspect-ratio: 4/5;
+    scroll-snap-align: center;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -20px rgba(40, 53, 42, 0.35);
+    border: 1px solid rgba(168, 137, 79, 0.2);
+    position: relative;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.06);
+  }
+
+  .gallery-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .gallery-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(168, 137, 79, 0.3);
+    transition: background 0.3s ease, width 0.3s ease;
+  }
+
+  .gallery-dots span.active {
+    background: var(--gold);
+    width: 18px;
+    border-radius: 3px;
   }
 
   /* ==============================================
@@ -554,7 +670,7 @@
   }
 
   /* ==============================================
-     NEW: ATURCARA MAJLIS (Schedule - MOVED HERE)
+     ATURCARA MAJLIS
      ============================================== */
   .schedule-section {
     text-align: center;
@@ -749,66 +865,31 @@
       animation: none !important;
       opacity: 1 !important;
     }
-    .scroll-cue { animation: none; }
+    .scroll-cue {
+      animation: none;
+    }
     .reveal,
     .divider .line {
       transition: none !important;
       opacity: 1 !important;
       transform: none !important;
     }
-    .video-wrap { transition: none; }
-    .golden-glow.active { animation: none; opacity: 0; }
-    .hero-content-wrapper { opacity: 1 !important; transform: none !important; }
+    .video-wrap {
+      transition: none;
+    }
+    .hero-content-wrapper {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+    .gate-inner {
+      animation: none !important;
+    }
   }
 
   a:focus-visible,
   button:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 3px;
-  }
-
-  /* ==============================================
-     COUNTDOWN & MUSIC BUTTON
-     ============================================== */
-  .countdown-wrapper {
-    text-align: center;
-    padding: 1.5rem 0 0.5rem 0;
-  }
-
-  .countdown-grid {
-    display: flex;
-    justify-content: center;
-    gap: 0.8rem;
-    flex-wrap: wrap;
-    margin-top: 0.8rem;
-  }
-
-  .countdown-item {
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(4px);
-    padding: 0.6rem 1.2rem;
-    border-radius: 999px;
-    min-width: 70px;
-    text-align: center;
-    border: 1px solid rgba(168, 137, 79, 0.2);
-  }
-
-  .countdown-item .num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.4rem;
-    font-weight: 600;
-    color: var(--forest-deep);
-    line-height: 1.2;
-  }
-
-  .countdown-item .label {
-    font-family: 'Jost', sans-serif;
-    font-size: 0.6rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--forest);
-    display: block;
-    margin-top: 2px;
   }
 
   #music-toggle {
@@ -845,373 +926,378 @@
     align-items: center;
     justify-content: center;
   }
+
+  /* Mobile tweaks */
+  @media (max-width: 640px) {
+    .schedule-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+      padding: 0.8rem 1rem;
+    }
+    .schedule-item .time {
+      min-width: unset;
+      font-size: 1rem;
+    }
+    .gallery-item {
+      width: min(72vw, 260px);
+    }
+  }
 </style>
 </head>
-<body>
 
-<!-- GOLDEN GLOW (bloom effect) -->
-<div class="golden-glow" id="goldenGlow"></div>
+<body class="locked">
 
-<!-- SILA BUKA OVERLAY -->
-<div id="opening-overlay">
-  <div class="opening-card">
-    <span class="deco-line"></span>
-    <h2>Kepada Tetamu Yang Dihormati</h2>
-    <h1>Daniel Qayyum <em>&amp;</em> Izza Nabila</h1>
-    <div class="invite-text">
-      Sila Buka Undangan Ini
-      <span>— Dengan segala hormatnya —</span>
-    </div>
-    <button class="btn-open" id="btnOpenInvite">Buka Jemputan</button>
-  </div>
-</div>
-
-<!-- FLOATING LEAVES -->
-<svg class="floating-leaf" style="top:12%; left:8%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
-<svg class="floating-leaf l2" style="top:55%; right:10%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
-<svg class="floating-leaf l3" style="top:80%; left:14%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
-<svg class="floating-leaf" style="top:20%; left:19%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
-<svg class="floating-leaf l2" style="top:63%; right:9%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
-<svg class="floating-leaf l3" style="top:44%; left:25%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
-
-<!-- ==============================================
-     HERO SECTION
+  <!-- ==============================================
+     OPENING GATE (Sila Buka)
      ============================================== -->
-<section class="hero" id="heroSection">
-  <div class="hero-content-wrapper" id="heroContentWrapper">
-    <div class="hero-frame">
-      <p class="eyebrow">Sabait Ijab, Sakalun Qabul</p>
-      <h1>Daniel Qayyum<em>&amp;</em>Izza Nabila</h1>
-      <p class="sub">#DanIzzainLove</p>
-      <div class="date-badge">
-        <span>Sabtu, 26 September 2026</span>
-        <span class="dot"></span>
-        <span>Tepian Rimba Villa</span>
-      </div>
+  <div id="gate">
+    <div class="gate-inner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+        <path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z" />
+        <path d="M12 4v16" stroke-width="0.8" />
+      </svg>
+      <p class="gate-eyebrow">Undangan Pernikahan</p>
+      <h1 class="gate-names">Daniel<em>&amp;</em>Izza</h1>
+      <p class="gate-sub">Kepada tetamu yang dihormati, sila buka undangan ini</p>
+      <button class="btn-open" id="btnOpen">Buka Undangan</button>
     </div>
-    <div class="scroll-cue">Scroll</div>
   </div>
-</section>
 
-<!-- ==============================================
+  <!-- ==============================================
+     FLOATING LEAVES
+     ============================================== -->
+  <svg class="floating-leaf" style="top:12%; left:8%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
+  <svg class="floating-leaf l2" style="top:55%; right:10%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
+  <svg class="floating-leaf l3" style="top:80%; left:14%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
+  <svg class="floating-leaf" style="top:20%; left:19%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
+  <svg class="floating-leaf l2" style="top:63%; right:9%; width:34px; height:34px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
+  <svg class="floating-leaf l3" style="top:44%; left:25%; width:26px; height:26px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 3c5 1 8 5 8 10 0 4-3 7-8 8-5-1-8-4-8-8 0-5 3-9 8-10z"/><path d="M12 4v16" stroke-width="0.8"/></svg>
+
+  <!-- ==============================================
+     HERO SECTION (with background photo)
+     ============================================== -->
+  <section class="hero" id="heroSection">
+    <!-- HERO BACKGROUND PHOTO - Replace 'prewed-hero1.jpg' with your image -->
+    <div class="hero-bg" id="heroBg" style="background-image: url('prewed-hero1.jpg');"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content-wrapper" id="heroContentWrapper">
+      <div class="hero-frame">
+        <p class="eyebrow">Sabait Ijab, Sakalun Qabul</p>
+        <h1>Daniel Qayyum<em>&amp;</em>Izza Nabila</h1>
+        <p class="sub">#DanIzzainLove</p>
+        <div class="date-badge">
+          <span>Sabtu, 26 September 2026</span>
+          <span class="dot"></span>
+          <span>Tepian Rimba Villa</span>
+        </div>
+      </div>
+      <div class="scroll-cue">Scroll</div>
+    </div>
+  </section>
+
+  <!-- ==============================================
      COUNTDOWN
      ============================================== -->
-<section class="countdown-wrapper reveal" style="padding-top: 0;">
-  <p class="eyebrow">Menuju Hari Bahagia</p>
-  <div class="countdown-grid" id="countdown">
-    <div class="countdown-item"><span class="num" id="days">00</span><span class="label">Hari</span></div>
-    <div class="countdown-item"><span class="num" id="hours">00</span><span class="label">Jam</span></div>
-    <div class="countdown-item"><span class="num" id="minutes">00</span><span class="label">Minit</span></div>
-    <div class="countdown-item"><span class="num" id="seconds">00</span><span class="label">Saat</span></div>
+  <section class="countdown-wrapper reveal" style="padding-top: 0;">
+    <p class="eyebrow">Menuju Hari Bahagia</p>
+    <div class="countdown-grid" id="countdown">
+      <div class="countdown-item"><span class="num" id="days">00</span><span class="label">Hari</span></div>
+      <div class="countdown-item"><span class="num" id="hours">00</span><span class="label">Jam</span></div>
+      <div class="countdown-item"><span class="num" id="minutes">00</span><span class="label">Minit</span></div>
+      <div class="countdown-item"><span class="num" id="seconds">00</span><span class="label">Saat</span></div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+    <span class="line"></span>
   </div>
-</section>
 
-<!-- DIVIDER -->
-<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
-  <span class="line"></span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
-  <span class="line"></span>
-</div>
-
-<!-- ==============================================
+  <!-- ==============================================
      VIDEO JEMPUTAN
      ============================================== -->
-<section class="film-section reveal">
-  <p class="eyebrow">Kami menjemput semua</p>
-  <h2>Video jemputan</h2>
-  <p class="note">Dengan izin-Nya, kami abadikan sebuah undangan dalam bentuk video sebagai tanda jemputan ke majlis pernikahan kami. Semoga segala maklumat yang disampaikan menjadi panduan, dan semoga kita dapat bersama-sama berkongsi detik yang penuh bermakna ini.</p>
-  <div class="video-wrap">
-    <video controls playsinline preload="metadata" poster="">
-      <source src="wedding-video-compressed.mp4" type="video/mp4">
-      Your browser doesn't support embedded video. <a href="wedding-video-compressed.mp4">Download the video</a> instead.
-    </video>
+  <section class="film-section reveal">
+    <p class="eyebrow">Kami menjemput semua</p>
+    <h2>Video jemputan</h2>
+    <p class="note">Dengan izin-Nya, kami abadikan sebuah undangan dalam bentuk video sebagai tanda jemputan ke majlis pernikahan kami. Semoga segala maklumat yang disampaikan menjadi panduan, dan semoga kita dapat bersama-sama berkongsi detik yang penuh bermakna ini.</p>
+    <div class="video-wrap">
+      <video controls playsinline preload="metadata" poster="">
+        <source src="wedding-video-compressed.mp4" type="video/mp4">
+        Your browser doesn't support embedded video. <a href="wedding-video-compressed.mp4">Download the video</a> instead.
+      </video>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+    <span class="line"></span>
   </div>
-</section>
 
-<!-- DIVIDER -->
-<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
-  <span class="line"></span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
-  <span class="line"></span>
-</div>
-
-<!-- ==============================================
-     BUTIRAN MAJLIS (Details) - MOVED UP
+  <!-- ==============================================
+     PHOTO GALLERY
      ============================================== -->
-<section class="details reveal">
-  <p class="eyebrow">bersama-sama meraikan hari bahagia kami</p>
-  <h2>Butiran Majlis</h2>
-  <div class="detail-grid">
-    <div class="detail-item">
-      <div class="detail-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
-      </div>
-      <div class="detail-text">
-        <div class="label">Tarikh</div>
-        <div class="value">Sabtu, 26 September 2026</div>
-        <div class="sub-value">Akad bermula 8.00 A.M.</div>
-        <div class="sub-value">Tetamu dijemput hadir 7.45 A.M.</div>
-      </div>
+  <section class="gallery-section reveal">
+    <p class="eyebrow">Kenangan Manis</p>
+    <h2>Our Pre-Wedding</h2>
+    <p class="note">Beberapa detik manis sebelum hari yang dinantikan.</p>
+    <div class="gallery-track" id="galleryTrack">
+      <!-- Replace prewed1.jpg - prewed7.jpg with your actual file names -->
+      <div class="gallery-item"><img src="prewed1.jpg" alt="Pre-wedding photo 1" loading="lazy"></div>
+      <div class="gallery-item"><img src="prewed2.jpg" alt="Pre-wedding photo 2" loading="lazy"></div>
+      <div class="gallery-item"><img src="prewed3.jpg" alt="Pre-wedding photo 3" loading="lazy"></div>
+      <div class="gallery-item"><img src="prewed4.jpg" alt="Pre-wedding photo 4" loading="lazy"></div>
+      <div class="gallery-item"><img src="prewed5.jpg" alt="Pre-wedding photo 5" loading="lazy"></div>
+      <div class="gallery-item"><img src="prewed6.jpg" alt="Pre-wedding photo 6" loading="lazy"></div>
+      <div class="gallery-item"><img src="prewed7.jpg" alt="Pre-wedding photo 7" loading="lazy"></div>
     </div>
-    <div class="detail-item">
-      <div class="detail-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s7-6.2 7-11.5A7 7 0 105 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
-      </div>
-      <div class="detail-text">
-        <div class="label">Lokasi</div>
-        <div class="value">Tepian Rimba Villa</div>
-        <div class="sub-value">Lot 3959 Lrg Serai 4 Sg Serai Bt 11, Cheras, 43100 Hulu Langat, Selangor</div>
-        <a class="map-link" href="https://maps.app.goo.gl/SkRUt5xprEviyvVL7" target="_blank" rel="noopener">
-          Open in Waze / Maps →
-        </a>
-      </div>
-    </div>
-    <div class="detail-item">
-      <div class="detail-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="8"/><path d="M12 8v4l3 2"/></svg>
-      </div>
-      <div class="detail-text">
-        <div class="label">Busana Tetamu/Dress Code</div>
-        <div class="value">Soft pink</div>
-        <div class="sub-value">Kami amat berbesar hati sekiranya warna tema ini dapat diserikan dalam busana anda, bagi melengkapi suasana indah majlis kami.</div>
-      </div>
-    </div>
+    <div class="gallery-dots" id="galleryDots"></div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+    <span class="line"></span>
   </div>
-</section>
 
-<!-- DIVIDER -->
-<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
-  <span class="line"></span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
-  <span class="line"></span>
-</div>
-
-<!-- ==============================================
-     ATURCARA MAJLIS (Schedule) - MOVED DOWN (after Details)
+  <!-- ==============================================
+     BUTIRAN MAJLIS
      ============================================== -->
-<section class="schedule-section reveal">
-  <p class="eyebrow">Alunan acara yang penuh makna</p>
-  <h2>Aturcara Majlis</h2>
-  <p class="note">Kami menjemput anda mengikuti rangkaian acara yang telah disusun dengan penuh kasih.</p>
-  <div class="schedule-list">
-    <div class="schedule-item">
-      <span class="time">8:00 Pagi</span>
-      <span class="event">
-        Istiadat Akad Nikah
-        <small>Detik sah pernikahan yang dinantikan</small>
-      </span>
+  <section class="details reveal">
+    <p class="eyebrow">bersama-sama meraikan hari bahagia kami</p>
+    <h2>Butiran Majlis</h2>
+    <div class="detail-grid">
+      <div class="detail-item">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+        </div>
+        <div class="detail-text">
+          <div class="label">Tarikh</div>
+          <div class="value">Sabtu, 26 September 2026</div>
+          <div class="sub-value">Akad bermula 8.00 A.M.</div>
+          <div class="sub-value">Tetamu dijemput hadir 7.45 A.M.</div>
+        </div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s7-6.2 7-11.5A7 7 0 105 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg>
+        </div>
+        <div class="detail-text">
+          <div class="label">Lokasi</div>
+          <div class="value">Tepian Rimba Villa</div>
+          <div class="sub-value">Lot 3959 Lrg Serai 4 Sg Serai Bt 11, Cheras, 43100 Hulu Langat, Selangor</div>
+          <a class="map-link" href="https://maps.app.goo.gl/SkRUt5xprEviyvVL7" target="_blank" rel="noopener">
+            Open in Waze / Maps →
+          </a>
+        </div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="4" width="16" height="16" rx="8"/><path d="M12 8v4l3 2"/></svg>
+        </div>
+        <div class="detail-text">
+          <div class="label">Busana Tetamu/Dress Code</div>
+          <div class="value">Soft pink</div>
+          <div class="sub-value">Kami amat berbesar hati sekiranya warna tema ini dapat diserikan dalam busana anda, bagi melengkapi suasana indah majlis kami.</div>
+        </div>
+      </div>
     </div>
-    <div class="schedule-item">
-      <span class="time">9:00 Pagi</span>
-      <span class="event">
-        Majlis Persandingan &amp; Penyerahan Mas Kahwin
-        <small>Simbolik penyatuan dua hati</small>
-      </span>
-    </div>
-    <div class="schedule-item">
-      <span class="time">10:00 Pagi</span>
-      <span class="event">
-        Jamuan Santapan &amp; Sesi Mesra Bersama Pengantin
-        <small>Makan, bergambar, dan beramah mesra</small>
-      </span>
-    </div>
-        <div class="schedule-item">
-      <span class="time">11:00 Pagi</span>
-      <span class="event">
-        Bersurai
-        <small>Majlis berakhir dengan penuh keberkatan dan ucapan terima kasih</small>
-      </span>
-    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+    <span class="line"></span>
   </div>
-</section>
 
-<!-- DIVIDER -->
-<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
-  <span class="line"></span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
-  <span class="line"></span>
-</div>
+  <!-- ==============================================
+     ATURCARA MAJLIS
+     ============================================== -->
+  <section class="schedule-section reveal">
+    <p class="eyebrow">Alunan acara yang penuh makna</p>
+    <h2>Aturcara Majlis</h2>
+    <p class="note">Kami menjemput anda mengikuti rangkaian acara yang telah disusun dengan penuh kasih.</p>
+    <div class="schedule-list">
+      <div class="schedule-item">
+        <span class="time">8:00 Pagi</span>
+        <span class="event">
+          Istiadat Akad Nikah
+          <small>Detik sah pernikahan yang dinantikan</small>
+        </span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">9:00 Pagi</span>
+        <span class="event">
+          Majlis Persandingan &amp; Penyerahan Mas Kahwin
+          <small>Simbolik penyatuan dua hati</small>
+        </span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">10:00 Pagi</span>
+        <span class="event">
+          Jamuan Santapan &amp; Sesi Mesra Bersama Pengantin
+          <small>Makan, bergambar, dan beramah mesra</small>
+        </span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">11:00 Pagi</span>
+        <span class="event">
+          Bersurai
+          <small>Majlis berakhir dengan penuh keberkatan dan ucapan terima kasih</small>
+        </span>
+      </div>
+    </div>
+  </section>
 
-<!-- ==============================================
+  <!-- DIVIDER -->
+  <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+    <span class="line"></span>
+  </div>
+
+  <!-- ==============================================
      RSVP
      ============================================== -->
-<section class="rsvp reveal" id="rsvp">
-  <p class="eyebrow">Mohon Maklum Balas</p>
-  <h2>RSVP</h2>
-  <p class="note">Diharapkan pengesahan kehadiran dapat diberikan sebelum 19 September 2026. Kerjasama anda amat kami hargai bagi membantu kami membuat persiapan rapi untuk hari yang penuh bermakna ini.</p>
-  <div class="form-wrap">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?embedded=true">Loading…</iframe>
-  </div>
-  <a class="form-fallback" href="https://forms.gle/8daSoxqV7rbbt3Qp6" target="_blank" rel="noopener">
-    Form not loading? Open it directly →
-  </a>
-</section>
+  <section class="rsvp reveal" id="rsvp">
+    <p class="eyebrow">Mohon Maklum Balas</p>
+    <h2>RSVP</h2>
+    <p class="note">Diharapkan pengesahan kehadiran dapat diberikan sebelum 19 September 2026. Kerjasama anda amat kami hargai bagi membantu kami membuat persiapan rapi untuk hari yang penuh bermakna ini.</p>
+    <div class="form-wrap">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?embedded=true">Loading…</iframe>
+    </div>
+    <a class="form-fallback" href="https://forms.gle/8daSoxqV7rbbt3Qp6" target="_blank" rel="noopener">
+      Form not loading? Open it directly →
+    </a>
+  </section>
 
-<footer>
-  Dengan penuh rasa cinta, Daniel Qayyum &amp; Izza Nabila
-</footer>
+  <footer>
+    Dengan penuh rasa cinta, Daniel Qayyum &amp; Izza Nabila
+  </footer>
 
-<!-- BACKGROUND MUSIC -->
-<audio id="bgMusic" loop preload="none">
-  <source src="bg-music.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+  <!-- ==============================================
+     BACKGROUND MUSIC
+     ============================================== -->
+  <audio id="bgMusic" loop preload="none">
+    <source src="bg-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-<button id="music-toggle" aria-label="Toggle background music">
-  <span class="icon" id="musicIcon">♫</span>
-</button>
+  <button id="music-toggle" aria-label="Toggle background music">
+    <span class="icon" id="musicIcon">♫</span>
+  </button>
 
-<script>
-  // ============================================
-  // SCROLL REVEAL
-  // ============================================
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+  <!-- ==============================================
+     SCRIPTS
+     ============================================== -->
+  <script>
+    // ============================================
+    // OPENING GATE
+    // ============================================
+    document.getElementById('btnOpen').addEventListener('click', function() {
+      document.getElementById('gate').classList.add('opened');
+      document.body.classList.remove('locked');
+
+      // After gate opens, trigger the hero bloom effect
+      setTimeout(function() {
+        const heroWrapper = document.getElementById('heroContentWrapper');
+        heroWrapper.classList.add('bloom');
+      }, 400);
+
+      // Autoplay music
+      setTimeout(function() {
+        if (typeof audio !== 'undefined' && !isMusicPlaying) {
+          if (audio.currentTime < 49 || audio.currentTime === 0) {
+            audio.currentTime = 49;
+          }
+          audio.play()
+            .then(function() {
+              musicIcon.textContent = '♪';
+              isMusicPlaying = true;
+            })
+            .catch(function(e) { /* ignore */ });
+        }
+      }, 800);
+    });
+
+    // ============================================
+    // SCROLL REVEAL
+    // ============================================
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // ============================================
+    // LIVE COUNTDOWN
+    // ============================================
+    function updateCountdown() {
+      const wedding = new Date('Sep 26, 2026 08:00:00').getTime();
+      const now = new Date().getTime();
+      const diff = wedding - now;
+
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = String(days).padStart(2, '0');
+      document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // ============================================
+    // BACKGROUND MUSIC
+    // ============================================
+    const audio = document.getElementById('bgMusic');
+    const musicIcon = document.getElementById('musicIcon');
+    let isMusicPlaying = false;
+    const START_TIME = 49;
+
+    audio.addEventListener('loadedmetadata', function() {
+      if (this.duration > START_TIME) {
+        this.currentTime = START_TIME;
       }
     });
-  }, { threshold: 0.15 });
-  revealEls.forEach(el => observer.observe(el));
 
-  // ============================================
-  // SILA BUKA OVERLAY + BLOOMING EFFECT + AUTOPLAY MUSIC
-  // ============================================
-  const overlay = document.getElementById('opening-overlay');
-  const heroWrapper = document.getElementById('heroContentWrapper');
-  const glow = document.getElementById('goldenGlow');
-
-  document.getElementById('btnOpenInvite').addEventListener('click', function() {
-    // 1. Hide overlay
-    overlay.classList.add('hidden');
-
-    // 2. Trigger bloom effect after delay
-    setTimeout(function() {
-      glow.classList.remove('active');
-      void glow.offsetWidth;
-      glow.classList.add('active');
-
-      setTimeout(function() {
-        heroWrapper.classList.add('bloom');
-      }, 200);
-
-      document.body.style.overflow = 'auto';
-    }, 600);
-
-    // 3. Autoplay music
-    if (typeof audio !== 'undefined' && !isMusicPlaying) {
-      if (audio.currentTime < 49 || audio.currentTime === 0) {
-        audio.currentTime = 49;
-      }
-      audio.play()
-        .then(function() {
-          musicIcon.textContent = '♪';
-          isMusicPlaying = true;
-        })
-        .catch(function(error) {
-          console.log('Autoplay blocked:', error);
-        });
-    }
-  });
-
-  document.body.style.overflow = 'hidden';
-
-  // ============================================
-  // LIVE COUNTDOWN
-  // ============================================
-  function updateCountdown() {
-    const wedding = new Date('Sep 26, 2026 08:00:00').getTime();
-    const now = new Date().getTime();
-    const diff = wedding - now;
-
-    if (diff <= 0) {
-      document.getElementById('days').textContent = '00';
-      document.getElementById('hours').textContent = '00';
-      document.getElementById('minutes').textContent = '00';
-      document.getElementById('seconds').textContent = '00';
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    document.getElementById('days').textContent = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-  }
-
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-
-  // ============================================
-  // BACKGROUND MUSIC - Start at 0:49 & Loop
-  // ============================================
-  const audio = document.getElementById('bgMusic');
-  const musicIcon = document.getElementById('musicIcon');
-  let isMusicPlaying = false;
-  const START_TIME = 49;
-
-  audio.addEventListener('loadedmetadata', function() {
-    if (this.duration > START_TIME) {
+    audio.addEventListener('ended', function() {
       this.currentTime = START_TIME;
-    }
-  });
-
-  audio.addEventListener('ended', function() {
-    this.currentTime = START_TIME;
-    if (isMusicPlaying) {
-      this.play().catch(function(e) {});
-    }
-  });
-
-  document.getElementById('music-toggle').addEventListener('click', function() {
-    if (isMusicPlaying) {
-      audio.pause();
-      musicIcon.textContent = '♫';
-      isMusicPlaying = false;
-    } else {
-      if (audio.currentTime < START_TIME || audio.currentTime === 0) {
-        audio.currentTime = START_TIME;
-      }
-      audio.play()
-        .then(function() {
-          musicIcon.textContent = '♪';
-          isMusicPlaying = true;
-        })
-        .catch(function(error) {
-          alert('Muzik tidak dapat dimainkan. Sila klik sekali lagi.');
-        });
-    }
-  });
-
-  audio.addEventListener('error', function(e) {
-    console.log('❌ Music failed to load.');
-  });
-
-  // ============================================
-  // VIDEO & MUSIC INTERACTION
-  // ============================================
-  const video = document.querySelector('video');
-  let wasMusicPlaying = false;
-
-  if (video) {
-    video.addEventListener('play', function() {
       if (isMusicPlaying) {
-        wasMusicPlaying = true;
+        this.play().catch(function(e) {});
+      }
+    });
+
+    document.getElementById('music-toggle').addEventListener('click', function() {
+      if (isMusicPlaying) {
         audio.pause();
         musicIcon.textContent = '♫';
+        isMusicPlaying = false;
       } else {
-        wasMusicPlaying = false;
-      }
-    });
-
-    video.addEventListener('pause', function() {
-      if (wasMusicPlaying) {
         if (audio.currentTime < START_TIME || audio.currentTime === 0) {
           audio.currentTime = START_TIME;
         }
@@ -1220,10 +1306,83 @@
             musicIcon.textContent = '♪';
             isMusicPlaying = true;
           })
-          .catch(function() {});
+          .catch(function(error) {
+            alert('Muzik tidak dapat dimainkan. Sila klik sekali lagi.');
+          });
       }
     });
-  }
-</script>
+
+    audio.addEventListener('error', function(e) {
+      console.log('❌ Music failed to load.');
+    });
+
+    // ============================================
+    // VIDEO & MUSIC INTERACTION
+    // ============================================
+    const video = document.querySelector('video');
+    let wasMusicPlaying = false;
+
+    if (video) {
+      video.addEventListener('play', function() {
+        if (isMusicPlaying) {
+          wasMusicPlaying = true;
+          audio.pause();
+          musicIcon.textContent = '♫';
+        } else {
+          wasMusicPlaying = false;
+        }
+      });
+
+      video.addEventListener('pause', function() {
+        if (wasMusicPlaying) {
+          if (audio.currentTime < START_TIME || audio.currentTime === 0) {
+            audio.currentTime = START_TIME;
+          }
+          audio.play()
+            .then(function() {
+              musicIcon.textContent = '♪';
+              isMusicPlaying = true;
+            })
+            .catch(function() {});
+        }
+      });
+    }
+
+    // ============================================
+    // GALLERY DOTS (Active indicator)
+    // ============================================
+    const track = document.getElementById('galleryTrack');
+    const dotsContainer = document.getElementById('galleryDots');
+    const items = track.querySelectorAll('.gallery-item');
+    const totalItems = items.length;
+
+    // Create dots
+    for (let i = 0; i < totalItems; i++) {
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    }
+
+    const dots = dotsContainer.querySelectorAll('span');
+
+    // Update dots on scroll
+    track.addEventListener('scroll', function() {
+      const scrollLeft = this.scrollLeft;
+      const itemWidth = items[0].offsetWidth + 16; // width + gap
+      const activeIndex = Math.round(scrollLeft / itemWidth);
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === activeIndex);
+      });
+    });
+
+    // Also update on resize
+    window.addEventListener('resize', function() {
+      // Trigger a scroll event to update dots
+      track.dispatchEvent(new Event('scroll'));
+    });
+
+    console.log('🎵 All systems ready!');
+  </script>
 </body>
 </html>
