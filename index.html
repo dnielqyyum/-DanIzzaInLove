@@ -97,8 +97,8 @@
   }
 
   .gate-logo {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 150px;
     margin: 0 auto 1.5rem auto;
     display: block;
   }
@@ -150,6 +150,7 @@
     color: var(--gold);
     margin-top: 0.3rem;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .btn-open {
@@ -409,7 +410,7 @@
 
   .countdown-item .label {
     font-family: 'Jost', sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--forest);
@@ -954,9 +955,12 @@
      ============================================== */
   @media (max-width: 640px) {
     .hero-bg {
-      background-position: right center !important;
+      background-position: center center !important;
     }
-
+.gate-logo {
+  width: 90px;
+  height: 90px;
+}
     .schedule-item {
       flex-direction: column;
       align-items: flex-start;
@@ -984,7 +988,7 @@
       padding: 0.4rem 0.8rem;
     }
     .countdown-item .num {
-      font-size: 1.8rem;
+      font-size: 2.6rem;
     }
     .countdown-item .label {
       font-size: 0.5rem;
