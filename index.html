@@ -268,9 +268,8 @@
     background: linear-gradient(var(--gold), transparent);
   }
 
-  .hero-frame::before {
-    top: 0;
-  }
+  /* ===== REMOVED TOP LINE ===== */
+  /* .hero-frame::before { top: 0; }  ← DELETED */
 
   .hero-frame::after {
     bottom: 0;
@@ -974,9 +973,12 @@
   .hero-bg {
     background-position: 70% 50% !important;
   }
-   hero-content-wrapper {
-    transform: translateY(-10%) !important;
+
+  /* ===== MOVED EVERYTHING UP BY 15% ===== */
+  .hero-content-wrapper {
+    transform: translateY(-15%) !important;
   }
+
   .scroll-cue {
     display: none !important;
   }
