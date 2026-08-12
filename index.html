@@ -1596,19 +1596,27 @@
         heroWrapper.classList.add('bloom');
       }, 500);
 
-      setTimeout(function() {
-        if (typeof audio !== 'undefined' && !isMusicPlaying) {
-          if (audio.currentTime < 49 || audio.currentTime === 0) {
-            audio.currentTime = 49;
-          }
-          audio.play()
-            .then(function() {
-              musicIcon.textContent = '♬';
-              isMusicPlaying = true;
-            })
-            .catch(function(e) {});
-        }
-      }, 1000);
+      // Autoplay music - start immediately after gate opens
+if (typeof audio !== 'undefined' && !isMusicPlaying) {
+  // Preload the audio
+  audio.load();
+  
+  // Set start time to 0:49
+  if (audio.currentTime < 49 || audio.currentTime === 0) {
+    audio.currentTime = 49;
+  }
+  
+  // Play immediately
+  audio.play()
+    .then(function() {
+      musicIcon.textContent = '♬';
+      isMusicPlaying = true;
+      console.log('▶️ Music started playing');
+    })
+    .catch(function(e) {
+      console.log('⚠️ Autoplay blocked, user will need to click the music button');
+    });
+}
     });
 
     // ============================================
@@ -1736,24 +1744,43 @@
     // PHOTO GALLERY - Swiper
     // ============================================
     const swiper = new Swiper('.mySwiper', {
-      loop: true,
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: true,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      speed: 600,
-      slidesPerView: 1,
-      spaceBetween: 0,
-    });
+  loop: true,
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,  // ← Changed to false
+    pauseOnMouseEnter: true,      // ← Added
+    stopOnLastSlide: false,       // ← Added
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  speed: 600,
+  slidesPerView: 1,
+  spaceBetween: 0,
+  grabCursor: true,              // ← Added for better touch
+  touchRatio: 1,                 // ← Added for smooth mobile swiping
+});
 
+  // Force autoplay to start when page becomes visible
+document.addEventListener('visibilitychange', function() {
+  if (!document.hidden) {
+    swiper.autoplay.start();
+  }
+});
+
+// Restart autoplay after user interaction
+swiper.on('touchEnd', function() {
+  swiper.autoplay.start();
+});
+
+swiper.on('click', function() {
+  swiper.autoplay.start();
+});  
     // ============================================
     // LIGHTBOX
     // ============================================
