@@ -1160,6 +1160,20 @@
     gap:1rem;
     max-width:460px;
     margin:0 auto;
+    max-height:520px;
+    overflow-y:auto;
+    padding-right:0.5rem;
+    scroll-behavior:smooth;
+  }
+  .wish-wall::-webkit-scrollbar{
+    width:5px;
+  }
+  .wish-wall::-webkit-scrollbar-track{
+    background:transparent;
+  }
+  .wish-wall::-webkit-scrollbar-thumb{
+    background:rgba(168,137,79,0.35);
+    border-radius:10px;
   }
   @media(min-width:640px){
     .wish-wall{ grid-template-columns:1fr 1fr; }
