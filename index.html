@@ -1155,28 +1155,23 @@
   }
 
   .wish-wall{
-    display:grid;
-    grid-template-columns:1fr;
+    display:flex;
+    flex-direction:column;
     gap:1rem;
-    max-width:460px;
+    max-width:380px;
+    width:100%;
     margin:0 auto;
-    max-height:520px;
+    max-height:400px;
     overflow-y:auto;
     padding-right:0.5rem;
     scroll-behavior:smooth;
   }
-  .wish-wall::-webkit-scrollbar{
-    width:5px;
-  }
-  .wish-wall::-webkit-scrollbar-track{
-    background:transparent;
-  }
+  .wish-wall::-webkit-scrollbar{ width:5px; }
+  .wish-wall::-webkit-scrollbar-track{ background:transparent; }
   .wish-wall::-webkit-scrollbar-thumb{
     background:rgba(168,137,79,0.35);
     border-radius:10px;
   }
-  @media(min-width:640px){
-    .wish-wall{ grid-template-columns:1fr 1fr; }
   }
   .wish-card{
     background:rgba(255,255,255,0.55);
@@ -1197,6 +1192,12 @@
     color:var(--ink);
     opacity:0.85;
     line-height:1.6;
+    word-break:break-word;
+    overflow-wrap:break-word;
+  }
+  .wish-card .wish-name{
+    word-break:break-word;
+    overflow-wrap:break-word;
   }
 </style>
 </head>
@@ -1784,6 +1785,30 @@
   }
 
   loadWishes();
+  <script>
+  // Auto-scroll the wish wall gently downward, loop back to top
+  let wishAutoScroll;
+  function startWishAutoScroll(){
+    clearInterval(wishAutoScroll);
+    const wall = document.getElementById('wishWall');
+    let paused = false;
+
+    wall.addEventListener('mouseenter', function(){ paused = true; });
+    wall.addEventListener('mouseleave', function(){ paused = false; });
+    wall.addEventListener('touchstart', function(){ paused = true; });
+    wall.addEventListener('touchend', function(){ setTimeout(function(){ paused = false; }, 3000); });
+
+    wishAutoScroll = setInterval(function(){
+      if(paused) return;
+      if(wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 2){
+        wall.scrollTo({ top:0, behavior:'smooth' });
+      } else {
+        wall.scrollBy({ top:1, behavior:'auto' });
+      }
+    }, 40);
+  }
+  setTimeout(startWishAutoScroll, 2500);
+</script>
 </script>
 </body>
 </html>
