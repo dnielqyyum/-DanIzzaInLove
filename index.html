@@ -1493,7 +1493,7 @@
       <div class="schedule-item">
         <span class="time">9:00 Pagi</span>
         <span class="event">
-          Penyerahan Mas Kahwin
+          Majlis Persandingan &amp; Penyerahan Mas Kahwin
           <small>Simbolik penyatuan dua hati</small>
         </span>
       </div>
@@ -1898,9 +1898,10 @@
     }
 
     // ============================================
-    // AUTO-SCROLL WISH WALL (Mobile + Desktop)
+    // SIMPLIFIED AUTO-SCROLL WISH WALL
     // ============================================
     let wishAutoScroll = null;
+    let isPaused = false;
 
     function startWishAutoScroll() {
       // Clear any existing interval
@@ -1921,71 +1922,59 @@
 
       console.log('🔄 Starting auto-scroll with ' + cards.length + ' wishes');
 
-      let paused = false;
+      isPaused = false;
 
-      // Remove old event listeners by cloning and replacing
+      // Remove existing event listeners by cloning
       const newWall = wall.cloneNode(true);
       wall.parentNode.replaceChild(newWall, wall);
       const freshWall = document.getElementById('wishWall');
 
       // Pause on hover (desktop)
       freshWall.addEventListener('mouseenter', function() {
-        paused = true;
+        isPaused = true;
       });
 
       freshWall.addEventListener('mouseleave', function() {
-        paused = false;
+        isPaused = false;
       });
 
       // Pause on touch (mobile)
-      let resumeTimeout = null;
-      let scrollTimeout = null;
-
       freshWall.addEventListener('touchstart', function() {
-        paused = true;
-        if (resumeTimeout) {
-          clearTimeout(resumeTimeout);
-          resumeTimeout = null;
-        }
+        isPaused = true;
+        clearTimeout(freshWall._resumeTimer);
       });
 
       freshWall.addEventListener('touchend', function() {
-        if (resumeTimeout) {
-          clearTimeout(resumeTimeout);
-        }
-        resumeTimeout = setTimeout(function() {
-          paused = false;
+        clearTimeout(freshWall._resumeTimer);
+        freshWall._resumeTimer = setTimeout(function() {
+          isPaused = false;
         }, 3000);
       });
 
-      // Pause when user actively scrolls
+      // Pause when user scrolls manually
       freshWall.addEventListener('scroll', function() {
-        paused = true;
-        if (scrollTimeout) {
-          clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(function() {
-          paused = false;
+        isPaused = true;
+        clearTimeout(freshWall._scrollTimer);
+        freshWall._scrollTimer = setTimeout(function() {
+          isPaused = false;
         }, 3000);
       });
 
-      // Start the auto-scroll interval
+      // Start the auto-scroll
       wishAutoScroll = setInterval(function() {
-        // Skip if paused
-        if (paused) return;
+        if (isPaused) return;
 
-        // Check if there are any cards
         const currentCards = freshWall.querySelectorAll('.wish-card');
         if (currentCards.length === 0) return;
 
-        // Check if we reached the bottom
-        if (freshWall.scrollTop + freshWall.clientHeight >= freshWall.scrollHeight - 5) {
-          // Smooth scroll back to top after a short delay
+        // Check if reached bottom
+        if (freshWall.scrollTop + freshWall.clientHeight >= freshWall.scrollHeight - 10) {
+          // Smooth scroll back to top
           setTimeout(function() {
             freshWall.scrollTo({ top: 0, behavior: 'smooth' });
           }, 1500);
         } else {
-          // Scroll down slowly (1.5px at a time for smoothness)
+          // Scroll down
           freshWall.scrollBy({ top: 1.5, behavior: 'auto' });
         }
       }, 30);
@@ -2007,7 +1996,7 @@
 
           if (rows.length === 0 || (rows.length === 1 && !rows[0][1])) {
             wall.innerHTML = '<p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Jadilah yang pertama memberi ucapan!</p>';
-            // Still try to start auto-scroll even if no wishes (will exit gracefully)
+            // Try to start auto-scroll anyway
             setTimeout(startWishAutoScroll, 500);
             return;
           }
@@ -2032,13 +2021,13 @@
     }
 
     // ============================================
-    // INITIALIZE WISHES
+    // INITIALIZE
     // ============================================
 
     // Load wishes on page load
     loadWishes();
 
-    // Also reload wishes every 30 seconds
+    // Reload wishes every 30 seconds
     setInterval(function() {
       loadWishes();
     }, 30000);
