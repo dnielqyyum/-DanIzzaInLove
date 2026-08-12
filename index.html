@@ -676,7 +676,7 @@
     padding-right: 0.5rem;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
+    overscroll-behavior: contain;
   }
 
   .wish-wall::-webkit-scrollbar {
@@ -931,13 +931,11 @@
     box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
   }
 
-  /* ===== FIXED: Added usp_pp_url to prevent 400 error ===== */
   .form-wrap iframe {
     width: 100%;
     height: 900px;
     border: 0;
     display: block;
-    src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?usp=pp_url&embedded=true";
   }
 
   .form-fallback {
@@ -1308,90 +1306,90 @@
     <span class="line"></span>
   </div>
 
- <!-- ==============================================
+  <!-- ==============================================
      PHOTO GALLERY - With mobile-optimized images
      ============================================== -->
-<section class="gallery-section">
-  <div class="gallery-wrapper">
-    <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <!-- Photo 1 -->
-        <div class="swiper-slide">
-          <img 
-            src="gallery1.jpg" 
-            srcset="gallery1-mobile.jpg 600w, gallery1.jpg 1200w"
-            sizes="(max-width: 640px) 600px, 1200px"
-            alt="Pre-wedding 1"
-            loading="lazy"
-          >
+  <section class="gallery-section">
+    <div class="gallery-wrapper">
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <!-- Photo 1 -->
+          <div class="swiper-slide">
+            <img 
+              src="gallery1.jpg" 
+              srcset="gallery1-mobile.jpg 600w, gallery1.jpg 1200w"
+              sizes="(max-width: 640px) 600px, 1200px"
+              alt="Pre-wedding 1"
+              loading="lazy"
+            >
+          </div>
+          <!-- Photo 2 -->
+          <div class="swiper-slide">
+            <img 
+              src="gallery2.jpg" 
+              srcset="gallery2-mobile.jpg 600w, gallery2.jpg 1200w"
+              sizes="(max-width: 640px) 600px, 1200px"
+              alt="Pre-wedding 2"
+              loading="lazy"
+            >
+          </div>
+          <!-- Photo 3 -->
+          <div class="swiper-slide">
+            <img 
+              src="gallery3.jpg" 
+              srcset="gallery3-mobile.jpg 600w, gallery3.jpg 1200w"
+              sizes="(max-width: 640px) 600px, 1200px"
+              alt="Pre-wedding 3"
+              loading="lazy"
+            >
+          </div>
+          <!-- Photo 4 -->
+          <div class="swiper-slide">
+            <img 
+              src="gallery4.jpg" 
+              srcset="gallery4-mobile.jpg 600w, gallery4.jpg 1200w"
+              sizes="(max-width: 640px) 600px, 1200px"
+              alt="Pre-wedding 4"
+              loading="lazy"
+            >
+          </div>
+          <!-- Photo 5 -->
+          <div class="swiper-slide">
+            <img 
+              src="gallery5.jpg" 
+              srcset="gallery5-mobile.jpg 600w, gallery5.jpg 1200w"
+              sizes="(max-width: 640px) 600px, 1200px"
+              alt="Pre-wedding 5"
+              loading="lazy"
+            >
+          </div>
+          <!-- Photo 6 -->
+          <div class="swiper-slide">
+            <img 
+              src="gallery6.jpg" 
+              srcset="gallery6-mobile.jpg 600w, gallery6.jpg 1200w"
+              sizes="(max-width: 640px) 600px, 1200px"
+              alt="Pre-wedding 6"
+              loading="lazy"
+            >
+          </div>
+          <!-- Photo 7 -->
+          <div class="swiper-slide">
+            <img 
+              src="gallery7.jpg" 
+              srcset="gallery7-mobile.jpg 600w, gallery7.jpg 1200w"
+              sizes="(max-width: 640px) 600px, 1200px"
+              alt="Pre-wedding 7"
+              loading="lazy"
+            >
+          </div>
         </div>
-        <!-- Photo 2 -->
-        <div class="swiper-slide">
-          <img 
-            src="gallery2.jpg" 
-            srcset="gallery2-mobile.jpg 600w, gallery2.jpg 1200w"
-            sizes="(max-width: 640px) 600px, 1200px"
-            alt="Pre-wedding 2"
-            loading="lazy"
-          >
-        </div>
-        <!-- Photo 3 -->
-        <div class="swiper-slide">
-          <img 
-            src="gallery3.jpg" 
-            srcset="gallery3-mobile.jpg 600w, gallery3.jpg 1200w"
-            sizes="(max-width: 640px) 600px, 1200px"
-            alt="Pre-wedding 3"
-            loading="lazy"
-          >
-        </div>
-        <!-- Photo 4 -->
-        <div class="swiper-slide">
-          <img 
-            src="gallery4.jpg" 
-            srcset="gallery4-mobile.jpg 600w, gallery4.jpg 1200w"
-            sizes="(max-width: 640px) 600px, 1200px"
-            alt="Pre-wedding 4"
-            loading="lazy"
-          >
-        </div>
-        <!-- Photo 5 -->
-        <div class="swiper-slide">
-          <img 
-            src="gallery5.jpg" 
-            srcset="gallery5-mobile.jpg 600w, gallery5.jpg 1200w"
-            sizes="(max-width: 640px) 600px, 1200px"
-            alt="Pre-wedding 5"
-            loading="lazy"
-          >
-        </div>
-        <!-- Photo 6 -->
-        <div class="swiper-slide">
-          <img 
-            src="gallery6.jpg" 
-            srcset="gallery6-mobile.jpg 600w, gallery6.jpg 1200w"
-            sizes="(max-width: 640px) 600px, 1200px"
-            alt="Pre-wedding 6"
-            loading="lazy"
-          >
-        </div>
-        <!-- Photo 7 -->
-        <div class="swiper-slide">
-          <img 
-            src="gallery7.jpg" 
-            srcset="gallery7-mobile.jpg 600w, gallery7.jpg 1200w"
-            sizes="(max-width: 640px) 600px, 1200px"
-            alt="Pre-wedding 7"
-            loading="lazy"
-          >
-        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
       </div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- DIVIDER -->
   <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
@@ -1523,35 +1521,35 @@
     <span class="line"></span>
   </div>
 
-<!-- ==============================================
+  <!-- ==============================================
      RSVP
      ============================================== -->
-<section class="rsvp reveal" id="rsvp">
-  <p class="eyebrow">Mohon Maklum Balas</p>
-  <h2>RSVP</h2>
-  <p class="note">Diharapkan pengesahan kehadiran dapat diberikan sebelum 19 September 2026. Kerjasama anda amat kami hargai bagi membantu kami membuat persiapan rapi untuk hari yang penuh bermakna ini.</p>
+  <section class="rsvp reveal" id="rsvp">
+    <p class="eyebrow">Mohon Maklum Balas</p>
+    <h2>RSVP</h2>
+    <p class="note">Diharapkan pengesahan kehadiran dapat diberikan sebelum 19 September 2026. Kerjasama anda amat kami hargai bagi membantu kami membuat persiapan rapi untuk hari yang penuh bermakna ini.</p>
 
-  <div class="form-wrap">
-    <iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?usp=pp_url&embedded=true" 
-      style="width:100%; height:900px; border:0; display:block;"
-      loading="lazy"
-    >Loading…</iframe>
-  </div>
+    <div class="form-wrap">
+      <iframe 
+        src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?usp=pp_url&embedded=true" 
+        style="width:100%; height:900px; border:0; display:block;"
+        loading="lazy"
+      >Loading…</iframe>
+    </div>
 
-  <!-- Fallback button -->
-  <div style="text-align:center; margin-top:1.5rem;">
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?usp=pp_url" 
-       target="_blank" 
-       rel="noopener" 
-       style="display:inline-block; padding:0.8rem 2rem; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2); border-radius:999px; color:#fff; text-decoration:none; font-family:'Jost', sans-serif; font-size:0.8rem; letter-spacing:0.06em; transition:all 0.3s ease;">
-      📋 Buka di Google Forms
-    </a>
-    <p style="margin-top:0.5rem; font-size:0.65rem; color:rgba(255,255,255,0.4);">
-      Jika borang tidak muncul, klik butang di atas
-    </p>
-  </div>
-</section>
+    <!-- Fallback button -->
+    <div style="text-align:center; margin-top:1.5rem;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?usp=pp_url" 
+         target="_blank" 
+         rel="noopener" 
+         style="display:inline-block; padding:0.8rem 2rem; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.2); border-radius:999px; color:#fff; text-decoration:none; font-family:'Jost', sans-serif; font-size:0.8rem; letter-spacing:0.06em; transition:all 0.3s ease;">
+        📋 Buka di Google Forms
+      </a>
+      <p style="margin-top:0.5rem; font-size:0.65rem; color:rgba(255,255,255,0.4);">
+        Jika borang tidak muncul, klik butang di atas
+      </p>
+    </div>
+  </section>
 
   <footer>
     Dengan penuh rasa cinta, Daniel Qayyum &amp; Izza Nabila
@@ -1599,26 +1597,26 @@
       }, 500);
 
       // Autoplay music - start immediately after gate opens
-if (typeof audio !== 'undefined' && !isMusicPlaying) {
-  // Preload the audio
-  audio.load();
-  
-  // Set start time to 0:49
-  if (audio.currentTime < 49 || audio.currentTime === 0) {
-    audio.currentTime = 49;
-  }
-  
-  // Play immediately
-  audio.play()
-    .then(function() {
-      musicIcon.textContent = '♬';
-      isMusicPlaying = true;
-      console.log('▶️ Music started playing');
-    })
-    .catch(function(e) {
-      console.log('⚠️ Autoplay blocked, user will need to click the music button');
-    });
-}
+      if (typeof audio !== 'undefined' && !isMusicPlaying) {
+        // Preload the audio
+        audio.load();
+
+        // Set start time to 0:49
+        if (audio.currentTime < 49 || audio.currentTime === 0) {
+          audio.currentTime = 49;
+        }
+
+        // Play immediately
+        audio.play()
+          .then(function() {
+            musicIcon.textContent = '♬';
+            isMusicPlaying = true;
+            console.log('▶️ Music started playing');
+          })
+          .catch(function(e) {
+            console.log('⚠️ Autoplay blocked, user will need to click the music button');
+          });
+      }
     });
 
     // ============================================
@@ -1746,44 +1744,44 @@ if (typeof audio !== 'undefined' && !isMusicPlaying) {
     // PHOTO GALLERY - Swiper
     // ============================================
     const swiper = new Swiper('.mySwiper', {
-  loop: true,
-  autoplay: {
-    delay: 4000,
-    disableOnInteraction: false,  // ← Changed to false
-    pauseOnMouseEnter: true,      // ← Added
-    stopOnLastSlide: false,       // ← Added
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  speed: 600,
-  slidesPerView: 1,
-  spaceBetween: 0,
-  grabCursor: true,              // ← Added for better touch
-  touchRatio: 1,                 // ← Added for smooth mobile swiping
-});
+      loop: true,
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+        stopOnLastSlide: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      speed: 600,
+      slidesPerView: 1,
+      spaceBetween: 0,
+      grabCursor: true,
+      touchRatio: 1,
+    });
 
-  // Force autoplay to start when page becomes visible
-document.addEventListener('visibilitychange', function() {
-  if (!document.hidden) {
-    swiper.autoplay.start();
-  }
-});
+    // Force autoplay to start when page becomes visible
+    document.addEventListener('visibilitychange', function() {
+      if (!document.hidden) {
+        swiper.autoplay.start();
+      }
+    });
 
-// Restart autoplay after user interaction
-swiper.on('touchEnd', function() {
-  swiper.autoplay.start();
-});
+    // Restart autoplay after user interaction
+    swiper.on('touchEnd', function() {
+      swiper.autoplay.start();
+    });
 
-swiper.on('click', function() {
-  swiper.autoplay.start();
+    swiper.on('click', function() {
+      swiper.autoplay.start();
+    });
 
-});  
     // ============================================
     // LIGHTBOX
     // ============================================
@@ -1899,6 +1897,103 @@ swiper.on('click', function() {
       return div.innerHTML;
     }
 
+    // ============================================
+    // AUTO-SCROLL WISH WALL (Mobile + Desktop)
+    // ============================================
+    let wishAutoScroll = null;
+
+    function startWishAutoScroll() {
+      // Clear any existing interval
+      if (wishAutoScroll) {
+        clearInterval(wishAutoScroll);
+        wishAutoScroll = null;
+      }
+
+      const wall = document.getElementById('wishWall');
+      if (!wall) return;
+
+      // Check if there are any wish cards
+      const cards = wall.querySelectorAll('.wish-card');
+      if (cards.length === 0) {
+        console.log('No wish cards to scroll yet');
+        return;
+      }
+
+      console.log('🔄 Starting auto-scroll with ' + cards.length + ' wishes');
+
+      let paused = false;
+
+      // Remove old event listeners by cloning and replacing
+      const newWall = wall.cloneNode(true);
+      wall.parentNode.replaceChild(newWall, wall);
+      const freshWall = document.getElementById('wishWall');
+
+      // Pause on hover (desktop)
+      freshWall.addEventListener('mouseenter', function() {
+        paused = true;
+      });
+
+      freshWall.addEventListener('mouseleave', function() {
+        paused = false;
+      });
+
+      // Pause on touch (mobile)
+      let resumeTimeout = null;
+      let scrollTimeout = null;
+
+      freshWall.addEventListener('touchstart', function() {
+        paused = true;
+        if (resumeTimeout) {
+          clearTimeout(resumeTimeout);
+          resumeTimeout = null;
+        }
+      });
+
+      freshWall.addEventListener('touchend', function() {
+        if (resumeTimeout) {
+          clearTimeout(resumeTimeout);
+        }
+        resumeTimeout = setTimeout(function() {
+          paused = false;
+        }, 3000);
+      });
+
+      // Pause when user actively scrolls
+      freshWall.addEventListener('scroll', function() {
+        paused = true;
+        if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(function() {
+          paused = false;
+        }, 3000);
+      });
+
+      // Start the auto-scroll interval
+      wishAutoScroll = setInterval(function() {
+        // Skip if paused
+        if (paused) return;
+
+        // Check if there are any cards
+        const currentCards = freshWall.querySelectorAll('.wish-card');
+        if (currentCards.length === 0) return;
+
+        // Check if we reached the bottom
+        if (freshWall.scrollTop + freshWall.clientHeight >= freshWall.scrollHeight - 5) {
+          // Smooth scroll back to top after a short delay
+          setTimeout(function() {
+            freshWall.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 1500);
+        } else {
+          // Scroll down slowly (1.5px at a time for smoothness)
+          freshWall.scrollBy({ top: 1.5, behavior: 'auto' });
+        }
+      }, 30);
+    }
+
+    // ============================================
+    // LOAD WISHES FROM GOOGLE SHEETS
+    // ============================================
     function loadWishes() {
       const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1dpkXLVImvAStacU3mf2ceCtnLg4hY0bTug9Oe9s6J531r6aaHZ01bpqJOzzG-3hgkTNTxzKGU03W/pub?gid=1868766737&single=true&output=csv';
       const wall = document.getElementById('wishWall');
@@ -1912,6 +2007,8 @@ swiper.on('click', function() {
 
           if (rows.length === 0 || (rows.length === 1 && !rows[0][1])) {
             wall.innerHTML = '<p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Jadilah yang pertama memberi ucapan!</p>';
+            // Still try to start auto-scroll even if no wishes (will exit gracefully)
+            setTimeout(startWishAutoScroll, 500);
             return;
           }
 
@@ -1925,101 +2022,26 @@ swiper.on('click', function() {
               '</div>';
             wall.appendChild(card);
           });
+
+          // Start auto-scroll after wishes are loaded
+          setTimeout(startWishAutoScroll, 1000);
         })
         .catch(function() {
           wall.innerHTML = '<p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Gagal memuatkan ucapan.</p>';
         });
     }
 
-    // Auto-scroll the wish wall (works on mobile + desktop)
-    let wishAutoScroll;
+    // ============================================
+    // INITIALIZE WISHES
+    // ============================================
 
-   function startWishAutoScroll() {
-  clearInterval(wishAutoScroll);
-  const wall = document.getElementById('wishWall');
-  
-  // Check if there are any wish cards
-  const cards = wall.querySelectorAll('.wish-card');
-  if (cards.length === 0) {
-    console.log('No wish cards to scroll yet');
-    return;
-  }
-
-  let paused = false;
-
-  // Pause on hover (desktop)
-  wall.addEventListener('mouseenter', function() { 
-    paused = true; 
-  });
-  
-  wall.addEventListener('mouseleave', function() { 
-    paused = false; 
-  });
-
-  // Pause on touch (mobile) - more reliable
-  wall.addEventListener('touchstart', function() {
-    paused = true;
-    // Clear any pending resume
-    clearTimeout(wall.resumeTimeout);
-  });
-
-  wall.addEventListener('touchend', function() {
-    // Resume after 3 seconds of no touch
-    clearTimeout(wall.resumeTimeout);
-    wall.resumeTimeout = setTimeout(function() { 
-      paused = false; 
-    }, 3000);
-  });
-
-  // Pause when user actively scrolls
-  wall.addEventListener('scroll', function() {
-    paused = true;
-    clearTimeout(wall.scrollTimeout);
-    wall.scrollTimeout = setTimeout(function() {
-      paused = false;
-    }, 3000);
-  });
-
-  // Clear any existing interval
-  if (wishAutoScroll) {
-    clearInterval(wishAutoScroll);
-  }
-
-  wishAutoScroll = setInterval(function() {
-    // Skip if paused or no cards
-    if (paused) return;
-    
-    // Check if there are any cards
-    const currentCards = wall.querySelectorAll('.wish-card');
-    if (currentCards.length === 0) return;
-
-    // Check if we reached the bottom
-    if (wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 5) {
-      // Smooth scroll back to top after a short delay
-      setTimeout(function() {
-        wall.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 1500);
-    } else {
-      // Scroll down slowly (1px at a time for smoothness)
-      wall.scrollBy({ top: 1.5, behavior: 'auto' });
-    }
-  }, 30);
-}
     // Load wishes on page load
-loadWishes();
+    loadWishes();
 
-// Start auto-scroll after wishes load with proper delay
-setTimeout(function() {
-  startWishAutoScroll();
-}, 3000);
-
-// Also start after wishes are reloaded (every 30 seconds)
-setInterval(function() {
-  startWishAutoScroll();
-}, 32000);
-
-    // Reload wishes every 30 seconds
-    setInterval(loadWishes, 30000);
+    // Also reload wishes every 30 seconds
+    setInterval(function() {
+      loadWishes();
+    }, 30000);
 
     console.log('🎵 All systems ready!');
   </script>
