@@ -1306,27 +1306,90 @@
     <span class="line"></span>
   </div>
 
-  <!-- ==============================================
-     PHOTO GALLERY
+ <!-- ==============================================
+     PHOTO GALLERY - With mobile-optimized images
      ============================================== -->
-  <section class="gallery-section">
-    <div class="gallery-wrapper">
-      <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="gallery1.jpg" alt="Pre-wedding 1" loading="eager"></div>
-          <div class="swiper-slide"><img src="gallery2.jpg" alt="Pre-wedding 2" loading="eager"></div>
-          <div class="swiper-slide"><img src="gallery3.jpg" alt="Pre-wedding 3" loading="eager"></div>
-          <div class="swiper-slide"><img src="gallery4.jpg" alt="Pre-wedding 4" loading="eager"></div>
-          <div class="swiper-slide"><img src="gallery5.jpg" alt="Pre-wedding 5" loading="eager"></div>
-          <div class="swiper-slide"><img src="gallery6.jpg" alt="Pre-wedding 6" loading="eager"></div>
-          <div class="swiper-slide"><img src="gallery7.jpg" alt="Pre-wedding 7" loading="eager"></div>
+<section class="gallery-section">
+  <div class="gallery-wrapper">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <!-- Photo 1 -->
+        <div class="swiper-slide">
+          <img 
+            src="gallery1.jpg" 
+            srcset="gallery1-mobile.jpg 600w, gallery1.jpg 1200w"
+            sizes="(max-width: 640px) 600px, 1200px"
+            alt="Pre-wedding 1"
+            loading="lazy"
+          >
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+        <!-- Photo 2 -->
+        <div class="swiper-slide">
+          <img 
+            src="gallery2.jpg" 
+            srcset="gallery2-mobile.jpg 600w, gallery2.jpg 1200w"
+            sizes="(max-width: 640px) 600px, 1200px"
+            alt="Pre-wedding 2"
+            loading="lazy"
+          >
+        </div>
+        <!-- Photo 3 -->
+        <div class="swiper-slide">
+          <img 
+            src="gallery3.jpg" 
+            srcset="gallery3-mobile.jpg 600w, gallery3.jpg 1200w"
+            sizes="(max-width: 640px) 600px, 1200px"
+            alt="Pre-wedding 3"
+            loading="lazy"
+          >
+        </div>
+        <!-- Photo 4 -->
+        <div class="swiper-slide">
+          <img 
+            src="gallery4.jpg" 
+            srcset="gallery4-mobile.jpg 600w, gallery4.jpg 1200w"
+            sizes="(max-width: 640px) 600px, 1200px"
+            alt="Pre-wedding 4"
+            loading="lazy"
+          >
+        </div>
+        <!-- Photo 5 -->
+        <div class="swiper-slide">
+          <img 
+            src="gallery5.jpg" 
+            srcset="gallery5-mobile.jpg 600w, gallery5.jpg 1200w"
+            sizes="(max-width: 640px) 600px, 1200px"
+            alt="Pre-wedding 5"
+            loading="lazy"
+          >
+        </div>
+        <!-- Photo 6 -->
+        <div class="swiper-slide">
+          <img 
+            src="gallery6.jpg" 
+            srcset="gallery6-mobile.jpg 600w, gallery6.jpg 1200w"
+            sizes="(max-width: 640px) 600px, 1200px"
+            alt="Pre-wedding 6"
+            loading="lazy"
+          >
+        </div>
+        <!-- Photo 7 -->
+        <div class="swiper-slide">
+          <img 
+            src="gallery7.jpg" 
+            srcset="gallery7-mobile.jpg 600w, gallery7.jpg 1200w"
+            sizes="(max-width: 640px) 600px, 1200px"
+            alt="Pre-wedding 7"
+            loading="lazy"
+          >
+        </div>
       </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- DIVIDER -->
   <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
