@@ -89,13 +89,13 @@
   }
 
   .gate-inner {
-  position: relative;
-  z-index: 2;
-  padding: 2rem;
-  max-width: 560px;
-  width: 90%;
-  transform: translateY(-12%);
-}
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    max-width: 560px;
+    width: 90%;
+    transform: translateY(-12%);
+  }
 
   .gate-logo {
     width: 300px;
@@ -136,27 +136,27 @@
     margin: 0 0.15rem;
   }
 
- .gate-sub {
-  font-family: 'Jost', sans-serif;
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.85);
-  letter-spacing: 0.05em;
-  margin: 1.8rem 0 2.4rem 0;
-  line-height: 1.8;
-  text-align: center;
-}
+  .gate-sub {
+    font-family: 'Jost', sans-serif;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.05em;
+    margin: 1.8rem 0 2.4rem 0;
+    line-height: 1.8;
+    text-align: center;
+  }
 
   .gate-sub span {
-  display: block;
-  font-size: 0.8rem;
-  letter-spacing: 4px;
-  color: var(--gold);
-  margin-top: 0.3rem;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-align: center;
-  width: 100%;
-}
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
+  }
 
   .btn-open {
     background: transparent;
@@ -205,25 +205,25 @@
   }
 
   .hero-bg {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.hero-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  animation: slowZoom 25s infinite alternate ease-in-out;
-}
-
-@media (max-width: 640px) {
-  .hero-bg img {
-    object-position: 70% 50% !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
   }
-}
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: slowZoom 25s infinite alternate ease-in-out;
+  }
+
+  @media (max-width: 640px) {
+    .hero-bg img {
+      object-position: 70% 50% !important;
+    }
+  }
 
   @keyframes slowZoom {
     0% { transform: scale(1); }
@@ -929,11 +929,13 @@
     box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
   }
 
+  /* ===== FIXED: Added usp_pp_url to prevent 400 error ===== */
   .form-wrap iframe {
     width: 100%;
     height: 900px;
     border: 0;
     display: block;
+    src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?usp=pp_url&embedded=true";
   }
 
   .form-fallback {
@@ -1464,7 +1466,8 @@
     <h2>RSVP</h2>
     <p class="note">Diharapkan pengesahan kehadiran dapat diberikan sebelum 19 September 2026. Kerjasama anda amat kami hargai bagi membantu kami membuat persiapan rapi untuk hari yang penuh bermakna ini.</p>
     <div class="form-wrap">
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?embedded=true">Loading…</iframe>
+      <!-- ===== FIXED: Added usp_pp_url to prevent 400 error ===== -->
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc8I22gcnywIgObRn-FvHBqCTIvSfY-SvRtGZ2COSftvOtDGA/viewform?usp=pp_url&embedded=true">Loading…</iframe>
     </div>
     <a class="form-fallback" href="https://forms.gle/8daSoxqV7rbbt3Qp6" target="_blank" rel="noopener">
       Form not loading? Open it directly →
@@ -1822,54 +1825,54 @@
     }
 
     // Auto-scroll the wish wall (works on mobile + desktop)
-let wishAutoScroll;
+    let wishAutoScroll;
 
-function startWishAutoScroll() {
-  clearInterval(wishAutoScroll);
-  const wall = document.getElementById('wishWall');
-  let paused = false;
+    function startWishAutoScroll() {
+      clearInterval(wishAutoScroll);
+      const wall = document.getElementById('wishWall');
+      let paused = false;
 
-  // Pause on hover (desktop)
-  wall.addEventListener('mouseenter', function() { paused = true; });
-  wall.addEventListener('mouseleave', function() { paused = false; });
+      // Pause on hover (desktop)
+      wall.addEventListener('mouseenter', function() { paused = true; });
+      wall.addEventListener('mouseleave', function() { paused = false; });
 
-  // Pause on touch (mobile)
-  wall.addEventListener('touchstart', function() {
-    paused = true;
-  });
+      // Pause on touch (mobile)
+      wall.addEventListener('touchstart', function() {
+        paused = true;
+      });
 
-  wall.addEventListener('touchend', function() {
-    // Resume after 3 seconds of no touch
-    setTimeout(function() { 
-      paused = false; 
-    }, 3000);
-  });
+      wall.addEventListener('touchend', function() {
+        // Resume after 3 seconds of no touch
+        setTimeout(function() { 
+          paused = false; 
+        }, 3000);
+      });
 
-  // Also pause when user actively scrolls (both desktop + mobile)
-  wall.addEventListener('scroll', function() {
-    paused = true;
-    // Resume after 3 seconds of no scrolling
-    clearTimeout(wall.scrollTimeout);
-    wall.scrollTimeout = setTimeout(function() {
-      paused = false;
-    }, 3000);
-  });
+      // Also pause when user actively scrolls (both desktop + mobile)
+      wall.addEventListener('scroll', function() {
+        paused = true;
+        // Resume after 3 seconds of no scrolling
+        clearTimeout(wall.scrollTimeout);
+        wall.scrollTimeout = setTimeout(function() {
+          paused = false;
+        }, 3000);
+      });
 
-  wishAutoScroll = setInterval(function() {
-    if (paused) return;
-    
-    // Check if we reached the bottom
-    if (wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 2) {
-      // Smooth scroll back to top with a slight delay
-      setTimeout(function() {
-        wall.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 1000);
-    } else {
-      // Scroll down slowly
-      wall.scrollBy({ top: 1, behavior: 'auto' });
+      wishAutoScroll = setInterval(function() {
+        if (paused) return;
+        
+        // Check if we reached the bottom
+        if (wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 2) {
+          // Smooth scroll back to top with a slight delay
+          setTimeout(function() {
+            wall.scrollTo({ top: 0, behavior: 'smooth' });
+          }, 1000);
+        } else {
+          // Scroll down slowly
+          wall.scrollBy({ top: 1, behavior: 'auto' });
+        }
+      }, 40);
     }
-  }, 40);
-}
 
     // Load wishes on page load
     loadWishes();
