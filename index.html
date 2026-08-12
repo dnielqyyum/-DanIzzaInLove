@@ -675,6 +675,8 @@
     overflow-y: auto;
     padding-right: 0.5rem;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   }
 
   .wish-wall::-webkit-scrollbar {
@@ -1780,6 +1782,7 @@ swiper.on('touchEnd', function() {
 
 swiper.on('click', function() {
   swiper.autoplay.start();
+
 });  
     // ============================================
     // LIGHTBOX
@@ -1931,56 +1934,89 @@ swiper.on('click', function() {
     // Auto-scroll the wish wall (works on mobile + desktop)
     let wishAutoScroll;
 
-    function startWishAutoScroll() {
-      clearInterval(wishAutoScroll);
-      const wall = document.getElementById('wishWall');
-      let paused = false;
+   function startWishAutoScroll() {
+  clearInterval(wishAutoScroll);
+  const wall = document.getElementById('wishWall');
+  
+  // Check if there are any wish cards
+  const cards = wall.querySelectorAll('.wish-card');
+  if (cards.length === 0) {
+    console.log('No wish cards to scroll yet');
+    return;
+  }
 
-      // Pause on hover (desktop)
-      wall.addEventListener('mouseenter', function() { paused = true; });
-      wall.addEventListener('mouseleave', function() { paused = false; });
+  let paused = false;
 
-      // Pause on touch (mobile)
-      wall.addEventListener('touchstart', function() {
-        paused = true;
-      });
+  // Pause on hover (desktop)
+  wall.addEventListener('mouseenter', function() { 
+    paused = true; 
+  });
+  
+  wall.addEventListener('mouseleave', function() { 
+    paused = false; 
+  });
 
-      wall.addEventListener('touchend', function() {
-        // Resume after 3 seconds of no touch
-        setTimeout(function() { 
-          paused = false; 
-        }, 3000);
-      });
+  // Pause on touch (mobile) - more reliable
+  wall.addEventListener('touchstart', function() {
+    paused = true;
+    // Clear any pending resume
+    clearTimeout(wall.resumeTimeout);
+  });
 
-      // Also pause when user actively scrolls (both desktop + mobile)
-      wall.addEventListener('scroll', function() {
-        paused = true;
-        // Resume after 3 seconds of no scrolling
-        clearTimeout(wall.scrollTimeout);
-        wall.scrollTimeout = setTimeout(function() {
-          paused = false;
-        }, 3000);
-      });
+  wall.addEventListener('touchend', function() {
+    // Resume after 3 seconds of no touch
+    clearTimeout(wall.resumeTimeout);
+    wall.resumeTimeout = setTimeout(function() { 
+      paused = false; 
+    }, 3000);
+  });
 
-      wishAutoScroll = setInterval(function() {
-        if (paused) return;
-        
-        // Check if we reached the bottom
-        if (wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 2) {
-          // Smooth scroll back to top with a slight delay
-          setTimeout(function() {
-            wall.scrollTo({ top: 0, behavior: 'smooth' });
-          }, 1000);
-        } else {
-          // Scroll down slowly
-          wall.scrollBy({ top: 1, behavior: 'auto' });
-        }
-      }, 40);
+  // Pause when user actively scrolls
+  wall.addEventListener('scroll', function() {
+    paused = true;
+    clearTimeout(wall.scrollTimeout);
+    wall.scrollTimeout = setTimeout(function() {
+      paused = false;
+    }, 3000);
+  });
+
+  // Clear any existing interval
+  if (wishAutoScroll) {
+    clearInterval(wishAutoScroll);
+  }
+
+  wishAutoScroll = setInterval(function() {
+    // Skip if paused or no cards
+    if (paused) return;
+    
+    // Check if there are any cards
+    const currentCards = wall.querySelectorAll('.wish-card');
+    if (currentCards.length === 0) return;
+
+    // Check if we reached the bottom
+    if (wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 5) {
+      // Smooth scroll back to top after a short delay
+      setTimeout(function() {
+        wall.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 1500);
+    } else {
+      // Scroll down slowly (1px at a time for smoothness)
+      wall.scrollBy({ top: 1.5, behavior: 'auto' });
     }
-
+  }, 30);
+}
     // Load wishes on page load
-    loadWishes();
-    setTimeout(startWishAutoScroll, 2500);
+loadWishes();
+
+// Start auto-scroll after wishes load with proper delay
+setTimeout(function() {
+  startWishAutoScroll();
+}, 3000);
+
+// Also start after wishes are reloaded (every 30 seconds)
+setInterval(function() {
+  startWishAutoScroll();
+}, 32000);
 
     // Reload wishes every 30 seconds
     setInterval(loadWishes, 30000);
