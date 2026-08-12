@@ -94,7 +94,7 @@
   padding: 2rem;
   max-width: 560px;
   width: 90%;
-  transform: translateY(-12%); /* Moves everything up including the button */
+  transform: translateY(-12%);
 }
 
   .gate-logo {
@@ -102,7 +102,7 @@
     height: 300px;
     margin: 0 auto 1.5rem auto;
     display: block;
-    transform: translateY(30px); /* Moves logo down by 10px */
+    transform: translateY(30px);
   }
 
   .gate-logo img {
@@ -143,7 +143,7 @@
   letter-spacing: 0.05em;
   margin: 1.8rem 0 2.4rem 0;
   line-height: 1.8;
-  text-align: center;  /* ← ADD THIS LINE */
+  text-align: center;
 }
 
   .gate-sub span {
@@ -219,10 +219,9 @@
   animation: slowZoom 25s infinite alternate ease-in-out;
 }
 
-/* For mobile, keep the zoom animation but with different positioning if needed */
 @media (max-width: 640px) {
   .hero-bg img {
-    object-position: 70% 50% !important; /* or whatever you want for mobile */
+    object-position: 70% 50% !important;
   }
 }
 
@@ -259,21 +258,9 @@
 
   .hero-frame::before,
   .hero-frame::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 56px;
-    background: linear-gradient(var(--gold), transparent);
+    display: none !important;
   }
 
-  /* ===== REMOVED TOP LINE ===== */
-  /* .hero-frame::before { top: 0; }  ← DELETED */
-
-  .hero-frame::after {
-  display: none !important;
-}
   .hero .eyebrow {
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.2s;
@@ -325,10 +312,7 @@
   }
 
   .date-badge .dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--dusty-pink);
+    display: none !important;
   }
 
   @keyframes fadeUp {
@@ -508,11 +492,10 @@
     cursor: pointer;
   }
 
-  /* Individual crop settings for preview */
-  .swiper-slide:nth-child(1) img { object-position: 50% 100%; } /* gallery1 - crop top */
-  .swiper-slide:nth-child(2) img { object-fit: contain; object-position: center; } /* gallery2 - zoom out */
-  .swiper-slide:nth-child(4) img { object-position: 30% 50%; } /* gallery4 - crop right */
-  .swiper-slide:nth-child(7) img { object-position: 40% 50%; } /* gallery7 - crop right */
+  .swiper-slide:nth-child(1) img { object-position: 50% 100%; }
+  .swiper-slide:nth-child(2) img { object-fit: contain; object-position: center; }
+  .swiper-slide:nth-child(4) img { object-position: 30% 50%; }
+  .swiper-slide:nth-child(7) img { object-position: 40% 50%; }
 
   .swiper-button-next,
   .swiper-button-prev {
@@ -541,7 +524,7 @@
   }
 
   /* ==============================================
-     LIGHTBOX - Shows full original photo
+     LIGHTBOX
      ============================================== */
   .lightbox {
     position: fixed;
@@ -598,6 +581,140 @@
   .lightbox-close:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: rotate(90deg);
+  }
+
+  /* ==============================================
+     WISHES SECTION
+     ============================================== */
+  .wishes-section {
+    text-align: center;
+  }
+
+  .wishes-section h2 {
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: var(--forest-deep);
+    margin: 0.8rem 0 0.5rem;
+  }
+
+  .wishes-section p.note {
+    font-size: 0.88rem;
+    color: var(--forest);
+    max-width: 420px;
+    margin: 0 auto 2.2rem;
+    line-height: 1.7;
+  }
+
+  .wish-form {
+    max-width: 420px;
+    margin: 0 auto 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: left;
+  }
+
+  .wish-form input,
+  .wish-form textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(168, 137, 79, 0.35);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    resize: vertical;
+  }
+
+  .wish-form textarea {
+    min-height: 90px;
+  }
+
+  .wish-form input:focus,
+  .wish-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .wish-submit {
+    align-self: center;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--forest-deep);
+    padding: 0.75rem 2.4rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.35s ease, color 0.35s ease;
+  }
+
+  .wish-submit:hover {
+    background: var(--gold);
+    color: var(--ivory);
+  }
+
+  .wish-status {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--forest);
+    min-height: 1.2em;
+  }
+
+  .wish-wall {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    scroll-behavior: smooth;
+  }
+
+  .wish-wall::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .wish-wall::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .wish-wall::-webkit-scrollbar-thumb {
+    background: rgba(168, 137, 79, 0.35);
+    border-radius: 10px;
+  }
+
+  .wish-card {
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(168, 137, 79, 0.2);
+    border-radius: 8px;
+    padding: 1.1rem 1.3rem;
+    text-align: left;
+    box-shadow: 0 12px 30px -20px rgba(40, 53, 42, 0.3);
+  }
+
+  .wish-card .wish-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    color: var(--forest-deep);
+    margin-bottom: 0.3rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .wish-card .wish-msg {
+    font-size: 0.82rem;
+    color: var(--ink);
+    opacity: 0.85;
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   /* ==============================================
@@ -967,244 +1084,133 @@
   /* ==============================================
      MOBILE RESPONSIVE
      ============================================== */
- @media (max-width: 640px) {
-  .hero-bg {
-    background-position: 70% 50% !important;
-  }
+  @media (max-width: 640px) {
+    .hero-bg {
+      background-position: 70% 50% !important;
+    }
 
-  /* ===== MOVED EVERYTHING UP BY 15% ===== */
-  .hero-content-wrapper {
-    transform: translateY(-21%) !important;
-  }
+    .hero-content-wrapper {
+      transform: translateY(-21%) !important;
+    }
 
-  .scroll-cue {
-    display: none !important;
-  }
-  .hero-frame::before {
-    display: none !important;
-  }
+    .scroll-cue {
+      display: none !important;
+    }
 
-  .hero-frame::after {
-    display: none !important;
-  }
+    .hero-frame::before {
+      display: none !important;
+    }
 
-  .gate-logo {
-    width: 200px;
-    height: 200px;
-    transform: translateY(45px);
-  }
+    .hero-frame::after {
+      display: none !important;
+    }
 
-  .schedule-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.2rem;
-    padding: 0.8rem 1rem;
-  }
-  .schedule-item .time {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--gold);
-    min-width: unset;
-    font-family: 'Cormorant Garamond', serif;
-  }
-  .schedule-item .event {
-    font-size: 1rem;
-  }
-  .schedule-item .event small {
-    font-size: 0.7rem;
-  }
+    .gate-logo {
+      width: 200px;
+      height: 200px;
+      transform: translateY(45px);
+    }
 
-  .countdown-wrapper {
-    padding: 1.5rem 1rem 0.5rem 1rem;
-  }
-  .countdown-item {
-    min-width: 56px;
-    padding: 0.4rem 0.8rem;
-  }
-  .countdown-item .num {
-    font-size: 2.6rem;
-  }
-  .countdown-item .label {
-    font-size: 0.5rem;
-  }
+    .schedule-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+      padding: 0.8rem 1rem;
+    }
+    .schedule-item .time {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: unset;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .schedule-item .event {
+      font-size: 1rem;
+    }
+    .schedule-item .event small {
+      font-size: 0.7rem;
+    }
 
-  .gate-names {
-    font-size: clamp(2.2rem, 8vw, 3rem);
-  }
-  .gate-sub {
-    font-size: 0.9rem;
-  }
-  .gate-sub span {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  text-align: center;
-  width: 100%;
-}
-  .btn-open {
-    padding: 0.7rem 2.2rem;
-    font-size: 0.75rem;
-  }
+    .countdown-wrapper {
+      padding: 1.5rem 1rem 0.5rem 1rem;
+    }
+    .countdown-item {
+      min-width: 56px;
+      padding: 0.4rem 0.8rem;
+    }
+    .countdown-item .num {
+      font-size: 2.6rem;
+    }
+    .countdown-item .label {
+      font-size: 0.5rem;
+    }
 
-  .hero h1 {
-    font-size: clamp(2.2rem, 7vw, 3.2rem);
-  }
-  .hero .date-badge {
-    font-size: 0.65rem;
-    padding: 0.5rem 1.2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-  }
+    .gate-names {
+      font-size: clamp(2.2rem, 8vw, 3rem);
+    }
+    .gate-sub {
+      font-size: 0.9rem;
+    }
+    .gate-sub span {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-open {
+      padding: 0.7rem 2.2rem;
+      font-size: 0.75rem;
+    }
 
-  .swiper-button-next,
-  .swiper-button-prev {
-    display: none;
-  }
+    .hero h1 {
+      font-size: clamp(2.2rem, 7vw, 3.2rem);
+    }
+    .hero .date-badge {
+      font-size: 0.65rem;
+      padding: 0.5rem 1.2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
 
-  .lightbox {
-    padding: 1rem;
-  }
-  .lightbox-close {
-    top: 1rem;
-    right: 1rem;
-    width: 38px;
-    height: 38px;
-    font-size: 1.4rem;
-  }
+    .swiper-button-next,
+    .swiper-button-prev {
+      display: none;
+    }
 
-  footer {
-    padding: 3rem 1.5rem 4.5rem 1.5rem;
-  }
+    .lightbox {
+      padding: 1rem;
+    }
+    .lightbox-close {
+      top: 1rem;
+      right: 1rem;
+      width: 38px;
+      height: 38px;
+      font-size: 1.4rem;
+    }
 
-  .gallery-wrapper {
-    border-radius: 4px;
-  }
-  .swiper-slide {
-    aspect-ratio: 4/5;
-  }
+    footer {
+      padding: 3rem 1.5rem 4.5rem 1.5rem;
+    }
 
-  .divider {
-    margin: 1.5rem auto;
-  }
-}
-.wishes-section{ text-align:center; }
-  .wishes-section h2{
-    font-size:clamp(1.8rem,5vw,2.6rem);
-    color:var(--forest-deep);
-    margin:0.8rem 0 0.5rem;
-  }
-  .wishes-section p.note{
-    font-size:0.88rem;
-    color:var(--forest);
-    max-width:420px;
-    margin:0 auto 2.2rem;
-    line-height:1.7;
-  }
+    .gallery-wrapper {
+      border-radius: 4px;
+    }
+    .swiper-slide {
+      aspect-ratio: 4/5;
+    }
 
-  .wish-form{
-    max-width:420px;
-    margin:0 auto 3rem;
-    display:flex;
-    flex-direction:column;
-    gap:0.9rem;
-    text-align:left;
-  }
-  .wish-form input,
-  .wish-form textarea{
-    width:100%;
-    padding:0.8rem 1rem;
-    border:1px solid rgba(168,137,79,0.35);
-    border-radius:6px;
-    background:rgba(255,255,255,0.5);
-    font-family:'Jost', sans-serif;
-    font-size:0.9rem;
-    color:var(--ink);
-    resize:vertical;
-  }
-  .wish-form textarea{ min-height:90px; }
-  .wish-form input:focus,
-  .wish-form textarea:focus{
-    outline:none;
-    border-color:var(--gold);
-    background:rgba(255,255,255,0.8);
-  }
-  .wish-submit{
-    align-self:center;
-    background:transparent;
-    border:1px solid var(--gold);
-    color:var(--forest-deep);
-    padding:0.75rem 2.4rem;
-    font-family:'Jost', sans-serif;
-    font-size:0.75rem;
-    letter-spacing:0.16em;
-    text-transform:uppercase;
-    border-radius:999px;
-    cursor:pointer;
-    transition:background 0.35s ease, color 0.35s ease;
-  }
-  .wish-submit:hover{
-    background:var(--gold);
-    color:var(--ivory);
-  }
-  .wish-status{
-    text-align:center;
-    font-size:0.8rem;
-    color:var(--forest);
-    min-height:1.2em;
-  }
-
-  .wish-wall{
-    display:flex;
-    flex-direction:column;
-    gap:1rem;
-    max-width:380px;
-    width:100%;
-    margin:0 auto;
-    max-height:400px;
-    overflow-y:auto;
-    padding-right:0.5rem;
-    scroll-behavior:smooth;
-  }
-  .wish-wall::-webkit-scrollbar{ width:5px; }
-  .wish-wall::-webkit-scrollbar-track{ background:transparent; }
-  .wish-wall::-webkit-scrollbar-thumb{
-    background:rgba(168,137,79,0.35);
-    border-radius:10px;
-  }
-  }
-  .wish-card{
-    background:rgba(255,255,255,0.55);
-    border:1px solid rgba(168,137,79,0.2);
-    border-radius:8px;
-    padding:1.1rem 1.3rem;
-    text-align:left;
-    box-shadow:0 12px 30px -20px rgba(40,53,42,0.3);
-  }
-  .wish-card .wish-name{
-    font-family:'Cormorant Garamond', serif;
-    font-size:1.05rem;
-    color:var(--forest-deep);
-    margin-bottom:0.3rem;
-  }
-  .wish-card .wish-msg{
-    font-size:0.82rem;
-    color:var(--ink);
-    opacity:0.85;
-    line-height:1.6;
-    word-break:break-word;
-    overflow-wrap:break-word;
-  }
-  .wish-card .wish-name{
-    word-break:break-word;
-    overflow-wrap:break-word;
+    .divider {
+      margin: 1.5rem auto;
+    }
   }
 </style>
 </head>
 
 <body class="locked">
 
-    <!-- ==============================================
+  <!-- ==============================================
      OPENING GATE (Sila Buka)
      ============================================== -->
   <div id="gate">
@@ -1212,15 +1218,12 @@
       <source media="(max-width: 640px)" srcset="opening-bg-mobile.jpg">
       <img src="opening-bg.jpg" alt="Opening background" style="width:100%; height:100%; object-fit:cover;">
     </picture>
-    <!-- Dark overlay -->
     <div style="position:absolute; inset:0; z-index:1; background:linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.6) 100%);"></div>
 
     <div class="gate-inner">
-      <!-- YOUR LOGO -->
       <div class="gate-logo">
         <img src="logo-DI.png" alt="Logo" loading="eager">
       </div>
-
       <p class="gate-eyebrow">Kepada Tetamu Yang Dihormati</p>
       <h1 class="gate-names">Daniel<em>&amp;</em>Izza</h1>
       <p class="gate-sub">
@@ -1234,30 +1237,30 @@
   <!-- ==============================================
      HERO SECTION
      ============================================== -->
-<section class="hero" id="heroSection">
-  <picture class="hero-bg" style="position:absolute; inset:0; z-index:0; width:100%; height:100%;">
-  <source media="(max-width: 640px)" srcset="hero-bg-mobile.jpg" style="object-position: 70% 50%;">
-  <img src="hero-bg.jpg" alt="Hero background" style="width:100%; height:100%; object-fit:cover; object-position: 70% 50%; animation: slowZoom 25s infinite alternate ease-in-out;">
-</picture>
-  <div class="hero-overlay"></div>
+  <section class="hero" id="heroSection">
+    <picture class="hero-bg" style="position:absolute; inset:0; z-index:0; width:100%; height:100%;">
+      <source media="(max-width: 640px)" srcset="hero-bg-mobile.jpg" style="object-position: 70% 50%;">
+      <img src="hero-bg.jpg" alt="Hero background" style="width:100%; height:100%; object-fit:cover; object-position: 70% 50%; animation: slowZoom 25s infinite alternate ease-in-out;">
+    </picture>
+    <div class="hero-overlay"></div>
 
-  <div class="hero-content-wrapper" id="heroContentWrapper">
-    <div class="hero-frame">
-      <p class="eyebrow">Sabait Ijab, Sakalun Qabul</p>
-      <h1>
-        Daniel Qayyum
-        <span class="ampersand">&amp;</span>
-        Izza Nabila
-      </h1>
-      <p class="sub">#DanIzzainLove</p>
-      <div class="date-badge">
-        <span>Sabtu, 26 September 2026</span>
-        <span>Tepian Rimba Villa</span>
+    <div class="hero-content-wrapper" id="heroContentWrapper">
+      <div class="hero-frame">
+        <p class="eyebrow">Sabait Ijab, Sakalun Qabul</p>
+        <h1>
+          Daniel Qayyum
+          <span class="ampersand">&amp;</span>
+          Izza Nabila
+        </h1>
+        <p class="sub">#DanIzzainLove</p>
+        <div class="date-badge">
+          <span>Sabtu, 26 September 2026</span>
+          <span>Tepian Rimba Villa</span>
+        </div>
       </div>
+      <div class="scroll-cue">Scroll</div>
     </div>
-    <div class="scroll-cue">Scroll</div>
-  </div>
-</section>
+  </section>
 
   <!-- ==============================================
      COUNTDOWN
@@ -1302,7 +1305,7 @@
   </div>
 
   <!-- ==============================================
-     PHOTO GALLERY - No titles, Gold border
+     PHOTO GALLERY
      ============================================== -->
   <section class="gallery-section">
     <div class="gallery-wrapper">
@@ -1322,29 +1325,34 @@
       </div>
     </div>
   </section>
-<div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
-  <span class="line"></span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
-  <span class="line"></span>
-</div>
 
-<!-- WISHES -->
-<section class="wishes-section reveal">
-  <p class="eyebrow">Doa dan Restu</p>
-  <h2>Ucapan Untuk Kami</h2>
-  <p class="note">Tinggalkan sepatah dua kata untuk kami — setiap ucapan amat kami hargai.</p>
-
-  <form class="wish-form" id="wishForm">
-    <input type="text" id="wishName" placeholder="Nama anda" required>
-    <textarea id="wishMsg" placeholder="Tulis ucapan anda di sini..." required></textarea>
-    <button type="submit" class="wish-submit">Hantar Ucapan</button>
-    <p class="wish-status" id="wishStatus"></p>
-  </form>
-
-  <div class="wish-wall" id="wishWall">
-    <p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Memuatkan ucapan...</p>
+  <!-- DIVIDER -->
+  <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2C8 6 6 10 6 14a6 6 0 0012 0c0-4-2-8-6-12z"/></svg>
+    <span class="line"></span>
   </div>
-</section>
+
+  <!-- ==============================================
+     WISHES (DOA & RESTU)
+     ============================================== -->
+  <section class="wishes-section reveal">
+    <p class="eyebrow">Doa dan Restu</p>
+    <h2>Ucapan Untuk Kami</h2>
+    <p class="note">Tinggalkan sepatah dua kata untuk kami — setiap ucapan amat kami hargai.</p>
+
+    <form class="wish-form" id="wishForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeKnSNXvC8noO8LlfyjP9hWhN_nPKHAr7BeXL3HdCORzqb17Q/formResponse" method="POST" target="wishFrame">
+      <input type="text" id="wishName" name="entry.236962835" placeholder="Nama anda" required>
+      <textarea id="wishMsg" name="entry.950505922" placeholder="Tulis ucapan anda di sini..." required></textarea>
+      <button type="submit" class="wish-submit">Hantar Ucapan</button>
+      <p class="wish-status" id="wishStatus"></p>
+    </form>
+
+    <div class="wish-wall" id="wishWall">
+      <p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Memuatkan ucapan...</p>
+    </div>
+  </section>
+
   <!-- DIVIDER -->
   <div class="divider reveal" style="margin:0 auto; padding:0 1.5rem;">
     <span class="line"></span>
@@ -1490,7 +1498,6 @@
   <!-- ==============================================
      SCRIPTS
      ============================================== -->
-  <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script>
@@ -1504,13 +1511,11 @@
       gate.classList.add('opened');
       document.body.classList.remove('locked');
 
-      // Trigger hero bloom after gate opens
       setTimeout(function() {
         const heroWrapper = document.getElementById('heroContentWrapper');
         heroWrapper.classList.add('bloom');
       }, 500);
 
-      // Autoplay music
       setTimeout(function() {
         if (typeof audio !== 'undefined' && !isMusicPlaying) {
           if (audio.currentTime < 49 || audio.currentTime === 0) {
@@ -1521,7 +1526,7 @@
               musicIcon.textContent = '♬';
               isMusicPlaying = true;
             })
-            .catch(function(e) { /* ignore */ });
+            .catch(function(e) {});
         }
       }, 1000);
     });
@@ -1626,7 +1631,7 @@
         if (isMusicPlaying) {
           wasMusicPlaying = true;
           audio.pause();
-          musicIcon.textContent = '♫';
+          musicIcon.textContent = '⊘';
         } else {
           wasMusicPlaying = false;
         }
@@ -1639,7 +1644,7 @@
           }
           audio.play()
             .then(function() {
-              musicIcon.textContent = '♪';
+              musicIcon.textContent = '♬';
               isMusicPlaying = true;
             })
             .catch(function() {});
@@ -1670,13 +1675,12 @@
     });
 
     // ============================================
-    // LIGHTBOX - Click to open full image
+    // LIGHTBOX
     // ============================================
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxClose = document.getElementById('lightboxClose');
 
-    // Click on any gallery image to open lightbox
     document.querySelectorAll('.swiper-slide img').forEach(function(img) {
       img.addEventListener('click', function() {
         lightboxImage.src = this.src;
@@ -1685,7 +1689,6 @@
       });
     });
 
-    // Close lightbox
     function closeLightbox() {
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
@@ -1705,110 +1708,152 @@
       }
     });
 
+    // ============================================
+    // WISHES - Submit via iframe (no page refresh)
+    // ============================================
+    const wishForm = document.getElementById('wishForm');
+    const wishStatus = document.getElementById('wishStatus');
+    let isSubmitting = false;
+
+    // Create hidden iframe for form submission
+    const wishIframe = document.createElement('iframe');
+    wishIframe.name = 'wishFrame';
+    wishIframe.style.display = 'none';
+    document.body.appendChild(wishIframe);
+
+    wishIframe.addEventListener('load', function() {
+      if (isSubmitting) {
+        isSubmitting = false;
+        wishStatus.textContent = 'Terima kasih atas ucapan anda! ♡';
+        wishForm.reset();
+        setTimeout(loadWishes, 3000);
+        setTimeout(function() {
+          wishStatus.textContent = '';
+        }, 5000);
+      }
+    });
+
+    wishForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('wishName').value.trim();
+      const msg = document.getElementById('wishMsg').value.trim();
+
+      if (!name || !msg) {
+        wishStatus.textContent = 'Sila isi kedua-dua ruangan.';
+        return;
+      }
+
+      isSubmitting = true;
+      wishStatus.textContent = 'Menghantar ucapan...';
+      this.submit();
+
+      // Fallback timeout
+      setTimeout(function() {
+        if (isSubmitting) {
+          isSubmitting = false;
+          wishStatus.textContent = 'Ucapan anda telah dihantar! ♡';
+          wishForm.reset();
+          setTimeout(loadWishes, 3000);
+          setTimeout(function() {
+            wishStatus.textContent = '';
+          }, 5000);
+        }
+      }, 5000);
+    });
+
+    // ============================================
+    // LOAD WISHES FROM GOOGLE SHEETS
+    // ============================================
+    function parseCSVLine(line) {
+      const result = [];
+      let cur = '',
+        inQuotes = false;
+      for (let i = 0; i < line.length; i++) {
+        const c = line[i];
+        if (c === '"') {
+          if (inQuotes && line[i + 1] === '"') { cur += '"';
+            i++; } else inQuotes = !inQuotes;
+        } else if (c === ',' && !inQuotes) {
+          result.push(cur);
+          cur = '';
+        } else cur += c;
+      }
+      result.push(cur);
+      return result;
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function loadWishes() {
+      const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1dpkXLVImvAStacU3mf2ceCtnLg4hY0bTug9Oe9s6J531r6aaHZ01bpqJOzzG-3hgkTNTxzKGU03W/pub?gid=1868766737&single=true&output=csv';
+      const wall = document.getElementById('wishWall');
+
+      fetch(sheetUrl)
+        .then(function(r) { return r.text(); })
+        .then(function(csv) {
+          const lines = csv.trim().split('\n');
+          wall.innerHTML = '';
+          const rows = lines.slice(1).map(parseCSVLine).reverse();
+
+          if (rows.length === 0 || (rows.length === 1 && !rows[0][1])) {
+            wall.innerHTML = '<p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Jadilah yang pertama memberi ucapan!</p>';
+            return;
+          }
+
+          rows.forEach(function(row) {
+            const name = (row[1] || '').trim();
+            const msg = (row[2] || '').trim();
+            if (!name && !msg) return;
+            const card = document.createElement('div');
+            card.className = 'wish-card';
+            card.innerHTML = '<div class="wish-name">' + escapeHtml(name) + '</div><div class="wish-msg">' + escapeHtml(msg) +
+              '</div>';
+            wall.appendChild(card);
+          });
+        })
+        .catch(function() {
+          wall.innerHTML = '<p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Gagal memuatkan ucapan.</p>';
+        });
+    }
+
+    // Auto-scroll the wish wall
+    let wishAutoScroll;
+
+    function startWishAutoScroll() {
+      clearInterval(wishAutoScroll);
+      const wall = document.getElementById('wishWall');
+      let paused = false;
+
+      wall.addEventListener('mouseenter', function() { paused = true; });
+      wall.addEventListener('mouseleave', function() { paused = false; });
+      wall.addEventListener('touchstart', function() { paused = true; });
+      wall.addEventListener('touchend', function() {
+        setTimeout(function() { paused = false; }, 3000);
+      });
+
+      wishAutoScroll = setInterval(function() {
+        if (paused) return;
+        if (wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 2) {
+          wall.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          wall.scrollBy({ top: 1, behavior: 'auto' });
+        }
+      }, 40);
+    }
+
+    // Load wishes on page load
+    loadWishes();
+    setTimeout(startWishAutoScroll, 2500);
+
+    // Reload wishes every 30 seconds
+    setInterval(loadWishes, 30000);
+
     console.log('🎵 All systems ready!');
   </script>
-  <script>
-  // Submit wish via hidden iframe (avoids leaving the page / CORS issues)
-  document.getElementById('wishForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const name = document.getElementById('wishName').value.trim();
-    const msg = document.getElementById('wishMsg').value.trim();
-    const status = document.getElementById('wishStatus');
-    if(!name || !msg) return;
-
-    const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSeKnSNXvC8noO8LlfyjP9hWhN_nPKHAr7BeXL3HdCORzqb17Q/formResponse';
-    const data = new FormData();
-    data.append('entry.236962835', name);
-    data.append('entry.950505922', msg);
-
-    fetch(formUrl, { method:'POST', mode:'no-cors', body:data })
-      .then(function(){
-        status.textContent = 'Terima kasih atas ucapan anda! ♡';
-        document.getElementById('wishForm').reset();
-        setTimeout(loadWishes, 2000);
-      })
-      .catch(function(){
-        status.textContent = 'Ralat menghantar. Sila cuba lagi.';
-      });
-  });
-
-  // Load wishes from published Sheet (CSV)
-  function parseCSVLine(line){
-    const result = [];
-    let cur = '', inQuotes = false;
-    for(let i=0; i<line.length; i++){
-      const c = line[i];
-      if(c === '"'){
-        if(inQuotes && line[i+1] === '"'){ cur += '"'; i++; }
-        else inQuotes = !inQuotes;
-      } else if(c === ',' && !inQuotes){
-        result.push(cur); cur = '';
-      } else cur += c;
-    }
-    result.push(cur);
-    return result;
-  }
-
-  function loadWishes(){
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQ1dpkXLVImvAStacU3mf2ceCtnLg4hY0bTug9Oe9s6J531r6aaHZ01bpqJOzzG-3hgkTNTxzKGU03W/pub?gid=1868766737&single=true&output=csv';
-    fetch(sheetUrl)
-      .then(function(r){ return r.text(); })
-      .then(function(csv){
-        const lines = csv.trim().split('\n');
-        const wall = document.getElementById('wishWall');
-        wall.innerHTML = '';
-        // Skip header row, take most recent first
-        const rows = lines.slice(1).map(parseCSVLine).reverse();
-        if(rows.length === 0 || (rows.length === 1 && !rows[0][1])){
-          wall.innerHTML = '<p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Jadilah yang pertama memberi ucapan!</p>';
-          return;
-        }
-        rows.forEach(function(row){
-          const name = (row[1] || '').trim();
-          const msg = (row[2] || '').trim();
-          if(!name && !msg) return;
-          const card = document.createElement('div');
-          card.className = 'wish-card';
-          card.innerHTML = '<div class="wish-name">' + escapeHtml(name) + '</div><div class="wish-msg">' + escapeHtml(msg) + '</div>';
-          wall.appendChild(card);
-        });
-      })
-      .catch(function(){
-        document.getElementById('wishWall').innerHTML = '<p style="grid-column:1/-1; font-size:0.8rem; color:var(--forest); opacity:0.6;">Gagal memuatkan ucapan.</p>';
-      });
-  }
-
-  function escapeHtml(str){
-    const div = document.createElement('div');
-    div.textContent = str;
-    return div.innerHTML;
-  }
-
-  loadWishes();
-  <script>
-  // Auto-scroll the wish wall gently downward, loop back to top
-  let wishAutoScroll;
-  function startWishAutoScroll(){
-    clearInterval(wishAutoScroll);
-    const wall = document.getElementById('wishWall');
-    let paused = false;
-
-    wall.addEventListener('mouseenter', function(){ paused = true; });
-    wall.addEventListener('mouseleave', function(){ paused = false; });
-    wall.addEventListener('touchstart', function(){ paused = true; });
-    wall.addEventListener('touchend', function(){ setTimeout(function(){ paused = false; }, 3000); });
-
-    wishAutoScroll = setInterval(function(){
-      if(paused) return;
-      if(wall.scrollTop + wall.clientHeight >= wall.scrollHeight - 2){
-        wall.scrollTo({ top:0, behavior:'smooth' });
-      } else {
-        wall.scrollBy({ top:1, behavior:'auto' });
-      }
-    }, 40);
-  }
-  setTimeout(startWishAutoScroll, 2500);
-</script>
-</script>
 </body>
 </html>
