@@ -1351,7 +1351,7 @@
   </audio>
 
   <button id="music-toggle" aria-label="Toggle background music">
-    <span class="icon" id="musicIcon">♫</span>
+    <span class="icon" id="musicIcon">♬</span>
   </button>
 
   <!-- ==============================================
@@ -1385,7 +1385,7 @@
           }
           audio.play()
             .then(function() {
-              musicIcon.textContent = '♪';
+              musicIcon.textContent = '♬';
               isMusicPlaying = true;
             })
             .catch(function(e) { /* ignore */ });
@@ -1461,7 +1461,7 @@
     document.getElementById('music-toggle').addEventListener('click', function() {
       if (isMusicPlaying) {
         audio.pause();
-        musicIcon.textContent = '♫';
+        musicIcon.textContent = '⊘';
         isMusicPlaying = false;
       } else {
         if (audio.currentTime < START_TIME || audio.currentTime === 0) {
@@ -1469,7 +1469,7 @@
         }
         audio.play()
           .then(function() {
-            musicIcon.textContent = '♪';
+            musicIcon.textContent = '♬';
             isMusicPlaying = true;
           })
           .catch(function(error) {
